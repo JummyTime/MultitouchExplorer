@@ -1,4 +1,25 @@
-/ExplorerLib/obj
-/ExplorerLib/bin
-/MultitouchExplorer/bin
-/MultitouchExplorer/obj
+# compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.pdb
+*.dll.config
+*.cache
+
+# VS Upgrade stuff #
+####################
+UpgradeLog.XML
+_UpgradeReport_Files/
+
+# Directories #
+###############
+bin/
+obj/
+TestResults/
+
+# Resharper #
+#############
+/_ReSharper.*
+*.ReSharper.*
