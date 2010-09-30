@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using System.Collections.Generic;
+using System;
 
 namespace ExplorerLib
 {
@@ -57,5 +58,52 @@ namespace ExplorerLib
             }
         }
 
+        public List<ExplorerEvent> getChildEvents(String tag_filter, int max_hops)
+        {
+            List<ExplorerEvent> allEvents = new List<ExplorerEvent>();
+            if(tag_filter == "")
+            {
+                allEvents.AddRange(eventList);
+            }
+            else
+            {
+                foreach(ExplorerEvent childEvent in allEvents)
+                {
+                    if(childEvent.containsTag(tag_filter))
+                    {
+                        allEvents.Add(childEvent);
+                    }
+                }
+            }
+
+            if (max_hops > 0 || max_hops == -1)
+            {
+                max_hops--;
+                foreach (ExplorerContentBase contentItem in contentList)
+                {
+                    if (contentItem.GetType() == typeof(ExplorerContentMap))
+                    {
+                        allEvents.AddRange(((ExplorerContentMap)contentItem).getChildEvents(tag_filter, max_hops));
+                    }
+                }
+            }
+
+            return allEvents;
+        }
+
+        public List<ExplorerEvent> getChildEvents(String tag_filter)
+        {
+            return getChildEvents(tag_filter, -1);
+        }
+
+        public List<ExplorerEvent> getChildEvents(int max_hops)
+        {
+            return getChildEvents("", max_hops);
+        }
+
+        public List<ExplorerEvent> getChildEvents()
+        {
+            return getChildEvents("", -1);
+        }
     }
 }

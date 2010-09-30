@@ -25,7 +25,7 @@ namespace ExplorerLib
             {
                 if (childNode.Name == "tag")
                 {
-                    eventTags.Add(childNode.InnerText);
+                    eventTags.Add(childNode.InnerText.ToLower());
                 }
                 else if(childNode.Name == "start_date")
                 {
@@ -36,6 +36,21 @@ namespace ExplorerLib
                     endDate = Convert.ToDateTime(childNode.InnerText);
                 }
             }
+        }
+
+        public Boolean containsTag(String tag)
+        {
+            return eventTags.Contains(tag.ToLower());
+        }
+
+        public override String ToString()
+        {
+            return getEventName();
+        }
+
+        public String getEventName()
+        {
+            return eventName;
         }
     }
 }

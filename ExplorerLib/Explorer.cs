@@ -31,5 +31,10 @@ namespace ExplorerLib
                 System.Console.WriteLine("ERROR: XML Document could not be read");
             }           
         }
+
+        public ExplorerContentMap getRootContentMap()
+        {
+            return rootMap;
+        }
     }
 }
