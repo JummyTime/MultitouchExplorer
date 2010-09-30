@@ -43,14 +43,29 @@ namespace ExplorerLib
             return eventTags.Contains(tag.ToLower());
         }
 
-        public override String ToString()
+        public List<String> getTags()
         {
-            return getEventName();
+            return eventTags;
         }
 
-        public String getEventName()
+        public override String ToString()
+        {
+            return getName() + " starts on " + getStartDate() + " and ends on " + getEndDate();
+        }
+
+        public String getName()
         {
             return eventName;
+        }
+
+        public DateTime getStartDate()
+        {
+            return startDate;
+        }
+
+        public DateTime getEndDate()
+        {
+            return endDate;
         }
     }
 }

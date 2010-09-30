@@ -67,7 +67,7 @@ namespace ExplorerLib
             }
             else
             {
-                foreach(ExplorerEvent childEvent in allEvents)
+                foreach(ExplorerEvent childEvent in eventList)
                 {
                     if(childEvent.containsTag(tag_filter))
                     {
@@ -76,12 +76,12 @@ namespace ExplorerLib
                 }
             }
 
-            if (max_hops > 0 || max_hops == -1)
+            if (max_hops != 0)
             {
                 max_hops--;
                 foreach (ExplorerContentBase contentItem in contentList)
                 {
-                    if (contentItem.GetType() == typeof(ExplorerContentMap))
+                    if (contentItem is ExplorerContentMap)
                     {
                         allEvents.AddRange(((ExplorerContentMap)contentItem).getChildEvents(tag_filter, max_hops));
                     }

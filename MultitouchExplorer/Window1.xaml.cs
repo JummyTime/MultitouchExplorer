@@ -29,9 +29,10 @@ namespace MultitouchExplorer
             LayoutRoot.Children.Add(new TableControl());
             TableManager.IsFullScreen = false;
             Explorer explorer = new Explorer("../../../Sample.xml");
+            ExplorerContentMap rootMap = explorer.getRootContentMap();
 
             Console.WriteLine("Getting ALL Known Events:");
-            foreach (ExplorerEvent childEvent in explorer.getRootContentMap().getChildEvents())
+            foreach (ExplorerEvent childEvent in rootMap.getChildEvents("freefood"))
             {
                 System.Console.WriteLine(childEvent.ToString());
             }

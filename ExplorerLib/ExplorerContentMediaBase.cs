@@ -20,7 +20,7 @@ namespace ExplorerLib
             }
         }
 
-        public String getMediaPath()
+        public String getPath()
         {
             return mediaPath;
         }

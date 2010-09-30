@@ -13,7 +13,6 @@ namespace ExplorerLib
                 if (attribute.Name == "name")
                 {
                     name = attribute.Value;
-                    Console.WriteLine("ContentBase Creation: " + name);
                 }
             }
         }
