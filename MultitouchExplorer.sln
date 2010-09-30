@@ -2,8 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultitouchExplorer", "MultitouchExplorer\MultitouchExplorer.csproj", "{9B5A6A88-22BD-4AC8-929D-D6CE77C692DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9B8C2708-46F3-4938-8AC5-0FA20F7AC8AA} = {9B8C2708-46F3-4938-8AC5-0FA20F7AC8AA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerLib", "ExplorerLib\ExplorerLib.csproj", "{9B8C2708-46F3-4938-8AC5-0FA20F7AC8AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9EA46C1-F6F9-4B9C-A0E3-EEECD193293C}"
+	ProjectSection(SolutionItems) = preProject
+		Sample.xml = Sample.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

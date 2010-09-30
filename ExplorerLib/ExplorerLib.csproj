@@ -45,8 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExplorerMapFactory.cs" />
-    <Compile Include="ExplorerMap.cs" />
+    <Compile Include="Explorer.cs" />
+    <Compile Include="ExplorerContentBase.cs" />
+    <Compile Include="ExplorerContentImage.cs" />
+    <Compile Include="ExplorerContentMediaBase.cs" />
+    <Compile Include="ExplorerContentText.cs" />
+    <Compile Include="ExplorerContentVideo.cs" />
+    <Compile Include="ExplorerEvent.cs" />
+    <Compile Include="ExplorerContentMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

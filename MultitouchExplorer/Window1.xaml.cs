@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Table;
+using ExplorerLib;
 
 namespace MultitouchExplorer
 {
@@ -25,10 +26,9 @@ namespace MultitouchExplorer
             InitializeComponent();
 
             TableManager.Initialize(this, LayoutRoot);
-
             LayoutRoot.Children.Add(new TableControl());
-
-            TableManager.IsFullScreen = true;
+            TableManager.IsFullScreen = false;
+            Explorer explorer = new Explorer("../../../Sample.xml");
         }
     }
 }

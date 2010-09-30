@@ -1,0 +1,49 @@
+﻿  <map path="/home/campusmap.png" name="TNTECH Campus">
+    <events>
+      <event name="TTU Campus Closes for Spring Break">
+        <start_date>05/14/1989 23:00GMT</start_date>
+        <end_date>05/20/1989 23:00GMT</end_date>
+        <tag>campus</tag>
+        <tag>vacation</tag>
+        <tag>closure</tag>
+      </event>
+      <event name="Great Move-in Day">
+        <start_date>05/14/1989 05:00GMT</start_date>
+        <end_date>05/14/1989 23:00GMT</end_date>
+        <tag>freshman</tag>
+        <tag>dorms</tag>
+        <tag>freefood</tag>
+      </event>
+    </events>
+
+    <content>
+      <image path="/home/ttulogo.jpg" name="TTU Logo" />
+      <image path="/home/eagle.jpg" name="TTU Golden Eagle" />
+      <video path="/home/commercial.mov" name="TTU TV Spot" />
+      <map path="/home/bruner.png" name="Bruner Hall" onclickorigin="..." onclicksize="...">
+        <events>
+        </events>
+        <content>
+          <image path="/home/brunerhallfront.jpg" name="Front of Bruner Hall" />
+          <image path="/home/brunerhallabove.jpg" name="Bruner Hall From the Sky" />
+          <video path="/home/brunerhall_didyouknow.mov" name="Did You Know? Bruner Hall" />
+
+          <map path="/home/bruner1.png" name="Bruner Hall First Floor">
+            <!-- Notice, No onclick data means map appears as an image instead of hidden in the parent map -->
+            <events>
+              <event name="Seminar on Nerd Appreciation Day">
+                <start_date>05/14/1989 23:00GMT</start_date>
+                <end_date>05/20/1989 23:00GMT</end_date>
+                <tag>forstudents</tag>
+                <tag>nerd</tag>
+                <tag>seminar</tag>
+                <tag>freefood</tag>
+              </event>
+            </events>
+            <content>
+            </content>
+          </map>
+        </content>
+      </map>
+    </content>
+  </map>

@@ -119,6 +119,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExplorerLib\ExplorerLib.csproj">
+      <Project>{9B8C2708-46F3-4938-8AC5-0FA20F7AC8AA}</Project>
+      <Name>ExplorerLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
