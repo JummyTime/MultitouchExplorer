@@ -8,7 +8,7 @@ namespace ExplorerLib
 {
     public abstract class ExplorerContentMediaBase : ExplorerContentBase
     {
-        private String mediaPath = "";
+        private String mediaPath = null;
         public ExplorerContentMediaBase(XmlNode content_node) : base(content_node)
         {
             foreach (XmlAttribute attribute in content_node.Attributes)
@@ -17,6 +17,10 @@ namespace ExplorerLib
                 {
                     mediaPath = attribute.Value;
                 }
+            }
+            if(mediaPath == "")
+            {
+                throw new ExplorerParseXMLException("Path not supplied for media tag '" + getName() + "'", null);
             }
         }
 

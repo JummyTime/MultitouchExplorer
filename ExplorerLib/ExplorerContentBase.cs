@@ -5,7 +5,7 @@ namespace ExplorerLib
 {
     public abstract class ExplorerContentBase
     {
-        private String name = "";
+        private String name = null;
         public ExplorerContentBase(XmlNode content_node)
         {
             foreach (XmlAttribute attribute in content_node.Attributes)
@@ -14,6 +14,11 @@ namespace ExplorerLib
                 {
                     name = attribute.Value;
                 }
+            }
+
+            if (name == null)
+            {
+                throw new ExplorerParseXMLException("Name not supplied for content tag. Node: '" + content_node.OuterXml + "'", null);
             }
         }
 

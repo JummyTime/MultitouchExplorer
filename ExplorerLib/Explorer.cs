@@ -3,7 +3,6 @@ using System;
 
 namespace ExplorerLib
 {
-
     public class Explorer
     {
         private ExplorerContentMap rootMap;
@@ -22,13 +21,13 @@ namespace ExplorerLib
                 }
                 else
                 {
-                    System.Console.WriteLine("ERROR: Multiple Root Tags or Root tag not 'explorer'");
+                    throw new ExplorerLoadXMLException("Multiple Root Tags or Root tag not 'explorer'", null);
                 }
 
             }
             else
             {
-                System.Console.WriteLine("ERROR: XML Document could not be read");
+                throw new ExplorerLoadXMLException("XML Document could not be read", null);
             }           
         }
 

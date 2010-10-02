@@ -55,55 +55,54 @@ namespace ExplorerLib
                 {
                     contentList.Add(new ExplorerContentMap(childNode));
                 }
+                else
+                {
+                    throw new ExplorerParseXMLException("Unknown child node: " + childNode.Name, null);
+                }
             }
         }
 
-        public List<ExplorerEvent> getChildEvents(String tag_filter, int max_hops)
+        public HashSet<String> getChildEventTags(ExplorerEventFilter filter)
         {
-            List<ExplorerEvent> allEvents = new List<ExplorerEvent>();
-            if(tag_filter == "")
+            HashSet<String> childEventTags = new HashSet<String>();
+            List<ExplorerEvent> childEvents = getChildEvents(filter);
+            foreach (ExplorerEvent childEvent in childEvents)
             {
-                allEvents.AddRange(eventList);
+                childEventTags.UnionWith(childEvent.getTags());
             }
-            else
+
+            return childEventTags;
+        }
+
+        public List<ExplorerEvent> getChildEvents(ExplorerEventFilter filter)
+        {
+            List<ExplorerEvent> eventsFiltered = new List<ExplorerEvent>();
+            
+            foreach(ExplorerEvent childEvent in eventList)
             {
-                foreach(ExplorerEvent childEvent in eventList)
+                if (childEvent.meetsFilterRequirements(filter))
                 {
-                    if(childEvent.containsTag(tag_filter))
-                    {
-                        allEvents.Add(childEvent);
-                    }
+                    eventsFiltered.Add(childEvent);
                 }
             }
 
-            if (max_hops != 0)
+            int originalMaxHops = filter.MaxHops;
+
+            if (filter.MaxHops != 0)
             {
-                max_hops--;
+                if (filter.MaxHops != -1) filter.MaxHops--;
                 foreach (ExplorerContentBase contentItem in contentList)
                 {
                     if (contentItem is ExplorerContentMap)
                     {
-                        allEvents.AddRange(((ExplorerContentMap)contentItem).getChildEvents(tag_filter, max_hops));
+                        eventsFiltered.AddRange(((ExplorerContentMap)contentItem).getChildEvents(filter));
                     }
                 }
             }
 
-            return allEvents;
-        }
+            filter.MaxHops = originalMaxHops; //So the object is back at the original state
 
-        public List<ExplorerEvent> getChildEvents(String tag_filter)
-        {
-            return getChildEvents(tag_filter, -1);
-        }
-
-        public List<ExplorerEvent> getChildEvents(int max_hops)
-        {
-            return getChildEvents("", max_hops);
-        }
-
-        public List<ExplorerEvent> getChildEvents()
-        {
-            return getChildEvents("", -1);
+            return eventsFiltered;
         }
     }
 }

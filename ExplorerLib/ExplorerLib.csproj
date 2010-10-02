@@ -35,6 +35,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -53,6 +55,9 @@
     <Compile Include="ExplorerContentVideo.cs" />
     <Compile Include="ExplorerEvent.cs" />
     <Compile Include="ExplorerContentMap.cs" />
+    <Compile Include="ExplorerEventFilter.cs" />
+    <Compile Include="ExplorerLoadXMLException.cs" />
+    <Compile Include="ExplorerParseXMLException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
