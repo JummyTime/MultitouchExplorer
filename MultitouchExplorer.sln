@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultitouchExplorer", "MultitouchExplorer\MultitouchExplorer.csproj", "{9B5A6A88-22BD-4AC8-929D-D6CE77C692DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerGUIMike", "ExplorerGUIMike\ExplorerGUIMike.csproj", "{9B5A6A88-22BD-4AC8-929D-D6CE77C692DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerGUIMike", "ExplorerGUIJimmy\ExplorerGUIJimmy.csproj", "{9B5A3A88-22BD-4BC8-929D-D6DF77C692DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerLib", "ExplorerLib\ExplorerLib.csproj", "{9B8C2708-46F3-4938-8AC5-0FA20F7AC8AA}"
 EndProject
