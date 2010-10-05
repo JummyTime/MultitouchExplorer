@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ExplorerLib
+namespace ExplorerLib.Exceptions
 {
-    public class ExplorerLoadXMLException : Exception
+    public class ExplorerLoadXMLException : ExplorerException
     {
         public ExplorerLoadXMLException(String message, Exception innerException)
             : base(message, innerException)

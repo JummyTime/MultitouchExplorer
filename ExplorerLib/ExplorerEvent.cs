@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using ExplorerLib.Exceptions;
 
 namespace ExplorerLib
 {
     public class ExplorerEvent
     {
-        private String eventName = null;
+        private String eventName;
         private HashSet<String> eventTags = new HashSet<String>();
         private DateTime startDate = new DateTime(0);
         private DateTime endDate = new DateTime(0);
@@ -19,12 +20,39 @@ namespace ExplorerLib
                 {
                     eventName = attribute.Value;
                 }
-                
+
+                else if (attribute.Name == "start")
+                {
+                    try
+                    {
+                        startDate = Convert.ToDateTime(attribute.Value);
+                    }
+                    catch (FormatException ex)
+                    {
+                        throw new ExplorerParseXMLException("Start Date is invalid for '" + eventName + "'", ex);
+                    }
+                }
+                else if (attribute.Name == "end")
+                {
+                    try
+                    {
+                        endDate = Convert.ToDateTime(attribute.Value);
+                    }
+                    catch (FormatException ex)
+                    {
+                        throw new ExplorerParseXMLException("End Date is invalid for '" + eventName + "'", ex);
+                    }
+                }
+                else
+                {
+                    throw new ExplorerParseXMLException("Unknown child node: " + attribute.Name, null);
+                }
             }
 
             if (eventName == null)
             {
-                throw new ExplorerParseXMLException("Event Name not supplied for event tag. Node: '" + event_node.OuterXml + "'", null);
+                throw new ExplorerParseXMLException(
+                    "Event Name not supplied for event tag. Node: '" + event_node.OuterXml + "'", null);
             }
 
 
@@ -33,32 +61,6 @@ namespace ExplorerLib
                 if (childNode.Name == "tag")
                 {
                     eventTags.Add(childNode.InnerText.ToLower());
-                }
-                else if(childNode.Name == "start_date")
-                {
-                    try
-                    {
-                        startDate = Convert.ToDateTime(childNode.InnerText);
-                    }
-                    catch(FormatException ex)
-                    {
-                        throw new ExplorerParseXMLException("Start Date is invalid for '" + eventName + "'", ex);
-                    }
-                }
-                else if (childNode.Name == "end_date")
-                {
-                    try
-                    {
-                        endDate = Convert.ToDateTime(childNode.InnerText);
-                    }
-                    catch(FormatException ex)
-                    {
-                        throw new ExplorerParseXMLException("End Date is invalid for '" + eventName + "'", ex);
-                    }
-                }
-                else
-                {
-                    throw new ExplorerParseXMLException("Unknown child node: " + childNode.Name, null);
                 }
             }
         }
@@ -76,7 +78,6 @@ namespace ExplorerLib
             }
 
             return true;
-
         }
 
         public HashSet<String> getTags()

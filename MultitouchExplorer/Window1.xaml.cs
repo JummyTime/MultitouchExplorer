@@ -12,7 +12,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Table;
+using libSMARTMultiTouch.Controls;
+
 using ExplorerLib;
+using ExplorerLib.ContentTypes;
 
 namespace MultitouchExplorer
 {
@@ -26,24 +29,25 @@ namespace MultitouchExplorer
             InitializeComponent();
 
             TableManager.Initialize(this, LayoutRoot);
-            LayoutRoot.Children.Add(new TableControl());
-            TableManager.IsFullScreen = false;
-
             try
             {
                 Explorer explorer = new Explorer("../../../Sample.xml");
                 ExplorerContentMap rootMap = explorer.getRootContentMap();
+                InteractiveBorder interactiveBorder = new InteractiveBorder();
+                interactiveBorder.Child = rootMap.getImage();
 
-                Console.WriteLine("Getting ALL Known Events Tags:");
-                foreach (String childEvent in rootMap.getChildEventTags(ExplorerEventFilter.NO_FILTER))
-                {
-                    System.Console.WriteLine(childEvent.ToString());
-                }
+                LayoutRoot.Children.Add(interactiveBorder);
+
             }
             catch (Exception e)
             {
                 System.Console.WriteLine("Got exception: " + e);
             }
+
+            LayoutRoot.Children.Add(new TableControl());
+            TableManager.IsFullScreen = false;
+
+           
 
 
             

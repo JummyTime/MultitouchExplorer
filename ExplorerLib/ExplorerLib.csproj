@@ -31,33 +31,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Containers\ExplorerPointsContainer.cs" />
+    <Compile Include="Exceptions\ExplorerException.cs" />
     <Compile Include="Explorer.cs" />
-    <Compile Include="ExplorerContentBase.cs" />
-    <Compile Include="ExplorerContentImage.cs" />
-    <Compile Include="ExplorerContentMediaBase.cs" />
-    <Compile Include="ExplorerContentText.cs" />
-    <Compile Include="ExplorerContentVideo.cs" />
+    <Compile Include="ContentTypes\ExplorerContentBase.cs" />
+    <Compile Include="Containers\ExplorerContentsContainer.cs" />
+    <Compile Include="ContentTypes\ExplorerContentImage.cs" />
+    <Compile Include="ExplorerPoint.cs" />
+    <Compile Include="ExplorerRegion.cs" />
+    <Compile Include="ContentTypes\ExplorerContentMediaBase.cs" />
+    <Compile Include="ContentTypes\ExplorerContentText.cs" />
+    <Compile Include="ContentTypes\ExplorerContentVideo.cs" />
     <Compile Include="ExplorerEvent.cs" />
-    <Compile Include="ExplorerContentMap.cs" />
+    <Compile Include="ContentTypes\ExplorerContentMap.cs" />
+    <Compile Include="Containers\ExplorerEventsContainer.cs" />
     <Compile Include="ExplorerEventFilter.cs" />
-    <Compile Include="ExplorerLoadXMLException.cs" />
-    <Compile Include="ExplorerParseXMLException.cs" />
+    <Compile Include="Exceptions\ExplorerLoadXMLException.cs" />
+    <Compile Include="Exceptions\ExplorerParseXMLException.cs" />
+    <Compile Include="Containers\ExplorerRegionsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

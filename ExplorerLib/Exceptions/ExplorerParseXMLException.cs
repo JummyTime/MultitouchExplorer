@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ExplorerLib
+namespace ExplorerLib.Exceptions
 {
-    public class ExplorerParseXMLException : Exception
+    public class ExplorerParseXMLException : ExplorerException
     {
         public ExplorerParseXMLException(String message, Exception innerException)
             : base(message, innerException)
         {
         }
     }
-    
 }

@@ -1,49 +1,51 @@
-﻿  <map path="/home/campusmap.png" name="TNTECH Campus">
+﻿  <map path="file:///images/campusmap.png" name="TNTECH Campus">
     <events>
-      <event name="TTU Campus Closes for Spring Break">
-        <start_date>05/14/1989 23:00GMT</start_date>
-        <end_date>05/20/1989 23:00GMT</end_date>
+      <event name="TTU Campus Closes for Spring Break" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
         <tag>campus</tag>
         <tag>vacation</tag>
         <tag>closure</tag>
       </event>
-      <event name="Great Move-in Day">
-        <start_date>05/14/1989 05:00GMT</start_date>
-        <end_date>05/14/1989 23:00GMT</end_date>
+      <event name="Great Move-in Day" start="05/14/1989 05:00GMT" end="05/14/1989 23:00GMT">
         <tag>freshman</tag>
         <tag>dorms</tag>
         <tag>freefood</tag>
       </event>
     </events>
-
-    <content>
-      <image path="/home/ttulogo.jpg" name="TTU Logo" />
-      <image path="/home/eagle.jpg" name="TTU Golden Eagle" />
-      <video path="/home/commercial.mov" name="TTU TV Spot" />
-      <map path="/home/bruner.png" name="Bruner Hall" onclickorigin="..." onclicksize="...">
-        <events>
-        </events>
-        <content>
-          <image path="/home/brunerhallfront.jpg" name="Front of Bruner Hall" />
-          <image path="/home/brunerhallabove.jpg" name="Bruner Hall From the Sky" />
-          <video path="/home/brunerhall_didyouknow.mov" name="Did You Know? Bruner Hall" />
-
-          <map path="/home/bruner1.png" name="Bruner Hall First Floor">
-            <!-- Notice, No onclick data means map appears as an image instead of hidden in the parent map -->
+    <regions>
+      <region name="Bruner Hall" desc="Short description goes here" defaultimageid="1" defaultmapid="4">
+        <points>
+          <point x="1" y="1" />
+          <point x="3" y="3" />
+          <point x="4" y="2" />
+          <point x="2" y="3" />
+          <point x="6" y="4" />
+        </points>
+        <contents>
+          <image localid="1" path="file:///images/campusmap.png" name="Front of Bruner Hall" />
+          <image localid="2" path="file:///images/campusmap.png" name="Bruner Hall From the Sky" />
+          <video localid="3" path="file:///images/campusmap.png" name="Did You Know? Bruner Hall" />
+        
+          <map localid="4" path="file:///images/campusmap.png" name="First Floor">
             <events>
-              <event name="Seminar on Nerd Appreciation Day">
-                <start_date>05/14/1989 23:00GMT</start_date>
-                <end_date>05/20/1989 23:00GMT</end_date>
+              <event name="Seminar on Nerd Appreciation Day" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
                 <tag>forstudents</tag>
                 <tag>nerd</tag>
                 <tag>seminar</tag>
                 <tag>freefood</tag>
               </event>
             </events>
-            <content>
-            </content>
+            <regions>              
+            </regions>
+            <contents></contents>
           </map>
-        </content>
-      </map>
-    </content>
+        </contents>
+        <events></events>
+      </region>
+    </regions>
+    <contents>
+      <image path="file:///images/campusmap.png" name="TTU Logo" />
+      <image path="file:///images/campusmap.png" name="TTU Golden Eagle" />
+      <video path="file:///images/campusmap.png" name="TTU TV Spot" />
+    </contents>
+    
   </map>

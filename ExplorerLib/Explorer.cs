@@ -1,5 +1,7 @@
-﻿using System.Xml;
-using System;
+﻿using System;
+using System.Xml;
+using ExplorerLib.ContentTypes;
+using ExplorerLib.Exceptions;
 
 namespace ExplorerLib
 {
@@ -23,12 +25,11 @@ namespace ExplorerLib
                 {
                     throw new ExplorerLoadXMLException("Multiple Root Tags or Root tag not 'explorer'", null);
                 }
-
             }
             else
             {
                 throw new ExplorerLoadXMLException("XML Document could not be read", null);
-            }           
+            }
         }
 
         public ExplorerContentMap getRootContentMap()
