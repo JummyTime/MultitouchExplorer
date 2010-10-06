@@ -5,7 +5,7 @@ namespace ExplorerLib.Containers
 {
     public class ExplorerPointsContainer
     {
-        private List<ExplorerPoint> pointsList = new List<ExplorerPoint>();
+        private readonly List<ExplorerPoint> pointsList = new List<ExplorerPoint>();
 
         public ExplorerPointsContainer(XmlNode regions_node)
         {
@@ -17,5 +17,11 @@ namespace ExplorerLib.Containers
                 }
             }
         }
+        public List<ExplorerPoint> getPoints()
+        {
+            return pointsList;
+        }
     }
+
+    
 }

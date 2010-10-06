@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using ExplorerLib.ContentTypes;
 using ExplorerLib.Exceptions;
@@ -7,32 +8,35 @@ namespace ExplorerLib.Containers
 {
     public class ExplorerContentsContainer
     {
-        private List<ExplorerContentBase> contentList = new List<ExplorerContentBase>();
+        private readonly Dictionary<String, ExplorerContentBase> contentList = new Dictionary<String, ExplorerContentBase>();
 
         public ExplorerContentsContainer(XmlNode contents_node)
         {
             foreach (XmlNode childNode in contents_node.ChildNodes)
             {
+                ExplorerContentBase newItem;
                 if (childNode.Name == "image")
                 {
-                    contentList.Add(new ExplorerContentImage(childNode));
+                    newItem = new ExplorerContentImage(childNode);
                 }
                 else if (childNode.Name == "video")
                 {
-                    contentList.Add(new ExplorerContentVideo(childNode));
+                    newItem = new ExplorerContentVideo(childNode);
                 }
                 else if (childNode.Name == "text")
                 {
-                    contentList.Add(new ExplorerContentText(childNode));
+                    newItem = new ExplorerContentText(childNode);
                 }
                 else if (childNode.Name == "map")
                 {
-                    contentList.Add(new ExplorerContentMap(childNode));
+                    newItem = new ExplorerContentMap(childNode);
                 }
                 else
                 {
                     throw new ExplorerParseXMLException("Unknown child node: " + childNode.Name, null);
                 }
+
+                contentList.Add(newItem.getLocalId(), newItem);
             }
         }
     }

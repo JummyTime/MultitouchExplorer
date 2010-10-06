@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Controls;
 
-namespace MultitouchExplorer
+namespace ExplorerGUIMike
 {
     /// <summary>
     /// Interaction logic for TableControl.xaml

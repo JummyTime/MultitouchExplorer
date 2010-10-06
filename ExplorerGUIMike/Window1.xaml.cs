@@ -11,32 +11,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Table;
 using libSMARTMultiTouch.Controls;
-
+using libSMARTMultiTouch.Behaviors;
 using ExplorerLib;
 using ExplorerLib.ContentTypes;
 
-namespace MultitouchExplorer
+namespace ExplorerGUIMike
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class Window1 : Window
     {
+        private DraggableBorder interactiveBorder;
+        private BehaviorBoundMapToScreen boundMap;
         public Window1()
         {
             InitializeComponent();
 
             TableManager.Initialize(this, LayoutRoot);
+            TableManager.IsFullScreen = true;
             try
             {
                 Explorer explorer = new Explorer("../../../Sample.xml");
                 ExplorerContentMap rootMap = explorer.getRootContentMap();
-                InteractiveBorder interactiveBorder = new InteractiveBorder();
-                interactiveBorder.Child = rootMap.getImage();
-
-                LayoutRoot.Children.Add(interactiveBorder);
+                Canvas c = new Canvas();
+                DraggableBackgroundMap backgroundMap = new DraggableBackgroundMap(rootMap.getImage());
+                c.Children.Add(backgroundMap);
+                TouchInputManager.AddTouchContactDownHandler(interactiveBorder, touchDown);
+                LayoutRoot.Children.Add(c);
 
             }
             catch (Exception e)
@@ -44,13 +49,18 @@ namespace MultitouchExplorer
                 System.Console.WriteLine("Got exception: " + e);
             }
 
-            LayoutRoot.Children.Add(new TableControl());
-            TableManager.IsFullScreen = false;
+            //LayoutRoot.Children.Add(new TableControl());
 
            
 
 
             
+        }
+
+        public  void touchDown(object sender, libSMARTMultiTouch.Input.TouchContactEventArgs e)
+        {
+            Point p = interactiveBorder.PointFromScreen(e.TouchContact.Position);
+            Console.WriteLine("Down at: " + p.X + ", " + p.Y);
         }
     }
 }

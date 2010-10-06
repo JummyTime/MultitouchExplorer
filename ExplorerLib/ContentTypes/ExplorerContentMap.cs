@@ -7,7 +7,7 @@ namespace ExplorerLib.ContentTypes
     {
         private ExplorerEventsContainer eventsContainer;
         private ExplorerContentsContainer contentsContainer;
-        private ExplorerRegionsContainer regionsContainer;
+        private readonly ExplorerRegionsContainer regionsContainer;
 
         public ExplorerContentMap(XmlNode map_node)
             : base(map_node)
@@ -28,5 +28,11 @@ namespace ExplorerLib.ContentTypes
                 }
             }
         }
+
+        public ExplorerRegion getRegionContainingPoint(ExplorerPoint p)
+        {
+            return regionsContainer.getRegionContainingPoint(p);
+        }
+
     }
 }

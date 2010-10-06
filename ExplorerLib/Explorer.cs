@@ -23,7 +23,7 @@ namespace ExplorerLib
                 }
                 else
                 {
-                    throw new ExplorerLoadXMLException("Multiple Root Tags or Root tag not 'explorer'", null);
+                    throw new ExplorerLoadXMLException("Multiple Root Tags or Root tag not 'map'", null);
                 }
             }
             else

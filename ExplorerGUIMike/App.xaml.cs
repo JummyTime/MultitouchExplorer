@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace MultitouchExplorer
+namespace ExplorerGUIMike
 {
     /// <summary>
     /// Interaction logic for App.xaml

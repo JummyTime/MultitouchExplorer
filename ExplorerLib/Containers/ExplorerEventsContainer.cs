@@ -6,7 +6,7 @@ namespace ExplorerLib.Containers
 {
     public class ExplorerEventsContainer
     {
-        private List<ExplorerEvent> eventList = new List<ExplorerEvent>();
+        private readonly List<ExplorerEvent> eventList = new List<ExplorerEvent>();
 
         public ExplorerEventsContainer(XmlNode events_node)
         {

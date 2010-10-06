@@ -31,5 +31,15 @@ namespace ExplorerLib.Containers
 
             return null;
         }
+
+        public List<ExplorerRegion> getRegions()
+        {
+            return regionList;
+        }
+
+        public ExplorerContentMap getParentMap()
+        {
+            return parentMap;
+        }
     }
 }
