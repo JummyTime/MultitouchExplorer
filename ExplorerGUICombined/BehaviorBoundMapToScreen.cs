@@ -54,10 +54,5 @@ namespace ExplorerGUICombined
 
             AssociatedObject.TranslateTransformUpdated += AssociatedObject_TranslateTransformUpdated;
         }
-           
-
-
-
-
     }
 }
