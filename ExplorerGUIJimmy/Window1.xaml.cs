@@ -21,24 +21,28 @@ namespace MultitouchExplorer
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
+    /// 
     /// </summary>
     public partial class Window1 : Window
     {
         public Window1()
         {
             InitializeComponent();
-
+            
             TableManager.Initialize(this, LayoutRoot);
             try
             {
                 Explorer explorer = new Explorer("../../../Sample.xml");
                 ExplorerContentMap rootMap = explorer.getRootContentMap();
                 InteractiveBorder interactiveBorder = new InteractiveBorder();
+                ExplorerGUIJimmy.ExplorerClickBehavior ecb = new ExplorerGUIJimmy.ExplorerClickBehavior();
+                //ExplorerCl
                 RSTBehavior rnt = new RSTBehavior();
                 interactiveBorder.Attach(rnt);
+                interactiveBorder.Attach(ecb);
                 interactiveBorder.Child = rootMap.getImage();
                 LayoutRoot.Children.Add(interactiveBorder);
-                Console.WriteLine("Normal is the Watchword");
+                //Console.WriteLine("Normal is the Watchword");
             }
             catch (Exception e)
             {
@@ -46,7 +50,7 @@ namespace MultitouchExplorer
             }
 
             //LayoutRoot.Children.Add(new TableControl());
-            TableManager.IsFullScreen = true;
+            TableManager.IsFullScreen = false;
 
            
 

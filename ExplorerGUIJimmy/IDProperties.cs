@@ -4,26 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace TouchApplication
+namespace ExplorerGUIJimmy
 {
     // Associates some basic properties with an ID:
     // -Color
     // -Brush
     // -ID
     // You can easily extend this class to add other properties (e.g., the mouse-owner's name), or to adjust the defaults
-
+    
     class IDProperties
     {
-        private Color myColor;
-        private Brush myBrush;
+        private double myDistance;
+        private double MyContactTimer;
         private int myID;
 
         // Constructor. Set a few defaults
-        public IDProperties (int ID)
+        public IDProperties (int ID, double d, double t)
         {
             this.ID = ID;
-            this.Color = Colors.Orange;
-            this.Brush = Brushes.Orange;
+            this.distance = d;
+            //myDistance = d;
+            this.contactTimer = t;
+            //MyContactTimer = t;       
         }
 
         public int ID
@@ -31,17 +33,17 @@ namespace TouchApplication
             get { return myID; }
             set { myID = this.GetCorrectedID(value); }
         }
-        
-        public Color Color 
-        { 
-            get { return myColor; } 
-            set { myColor = value; } 
+
+        public double distance 
+        {
+            get { return myDistance; }
+            set { myDistance = value; } 
         }
 
-        public Brush Brush
+        public double contactTimer
         {
-            get { return myBrush; }
-            set { myBrush = value; }
+            get { return MyContactTimer; }
+            set { MyContactTimer = value; }
         }
 
         #region Static Utilities

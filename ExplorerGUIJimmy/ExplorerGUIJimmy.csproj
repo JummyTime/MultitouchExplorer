@@ -112,7 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExplorerClickBehavior.cs" />
-    <Compile Include="IDProperties.cs" />
+    <Compile Include="IDProperties.cs">
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

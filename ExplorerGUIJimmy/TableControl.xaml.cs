@@ -21,12 +21,12 @@ namespace MultitouchExplorer
     public partial class TableControl : TableApplicationControl
     {
         private Canvas canvas = new Canvas();
-
+        
         public TableControl()
         {
             canvas.Background = new SolidColorBrush(Colors.Transparent);
             InitializeComponent();
-            System.Console.WriteLine("Normal is the Watchword");
+            //System.Console.WriteLine("Normal is the Watchword");
         }
 
         private void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)
