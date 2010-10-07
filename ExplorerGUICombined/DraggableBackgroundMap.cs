@@ -6,10 +6,9 @@ using System.Windows.Shapes;
 using ExplorerLib;
 using ExplorerLib.ContentTypes;
 using libSMARTMultiTouch.Controls;
-using libSMARTMultiTouch.Input;
 using Image = System.Windows.Controls.Image;
 
-namespace ExplorerGUIMike
+namespace ExplorerGUICombined
 {
     public class DraggableBackgroundMap : DraggableBorder
     {
@@ -60,18 +59,33 @@ namespace ExplorerGUIMike
             if(region != null)
             {
                 Console.WriteLine(region.getName());
+                RegionWindow window = new RegionWindow(region);
+                window.OnRegionClose += new RegionWindow.HandleRegionClose(window_OnRegionClose);
+                Canvas.SetLeft(window, original.X + 5);
+                Canvas.SetTop(window, original.Y + 5);
+                parentCanvas.Children.Add(window);
             }
+            else
+            {
 
+                Ellipse ellipse = new Ellipse();
+                ellipse.Width = 6;
+                ellipse.Height = 6;
+                ellipse.Stroke = new SolidColorBrush(Color.FromArgb(128, 0, 0, 255));
+                Canvas.SetLeft(ellipse, original.X - 3);
+                Canvas.SetTop(ellipse, original.Y - 3);
+                parentCanvas.Children.Add(ellipse);
+
+            }
             
-            Ellipse ellipse = new Ellipse();
-            ellipse.Width = 6;
-            ellipse.Height = 6;
-            Canvas.SetLeft(ellipse, original.X - 3);
-            Canvas.SetTop(ellipse, original.Y - 3);
-            parentCanvas.Children.Add(ellipse);
             Console.WriteLine("<point x=\"" + scaled.X + "\" y=\"" + scaled.Y + "\" />");
              
 
+        }
+
+        void window_OnRegionClose(RegionWindow window)
+        {
+            parentCanvas.Children.Remove(window);
         }
 
     }
