@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Controls;
 
+
 namespace MultitouchExplorer
 {
     /// <summary>
@@ -25,6 +26,7 @@ namespace MultitouchExplorer
         {
             canvas.Background = new SolidColorBrush(Colors.Transparent);
             InitializeComponent();
+            System.Console.WriteLine("Normal is the Watchword");
         }
 
         private void TableApplicationControl_Loaded(object sender, RoutedEventArgs e)

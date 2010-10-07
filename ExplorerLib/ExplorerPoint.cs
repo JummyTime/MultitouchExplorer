@@ -25,7 +25,7 @@ namespace ExplorerLib
                     }
                     catch (OverflowException ex)
                     {
-                        throw new ExplorerParseXMLException("X is overflowed for point '" + point_node.OuterXml + "'",
+                        throw new ExplorerParseXMLException("X is overflowed for point '" + point_node.OuterXml + "'", 
                                                             ex);
                     }
                 }

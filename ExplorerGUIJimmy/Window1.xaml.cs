@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using libSMARTMultiTouch.Table;
 using libSMARTMultiTouch.Controls;
-
+using libSMARTMultiTouch.Behaviors;
 using ExplorerLib;
 using ExplorerLib.ContentTypes;
 
@@ -34,18 +34,19 @@ namespace MultitouchExplorer
                 Explorer explorer = new Explorer("../../../Sample.xml");
                 ExplorerContentMap rootMap = explorer.getRootContentMap();
                 InteractiveBorder interactiveBorder = new InteractiveBorder();
+                RSTBehavior rnt = new RSTBehavior();
+                interactiveBorder.Attach(rnt);
                 interactiveBorder.Child = rootMap.getImage();
-
                 LayoutRoot.Children.Add(interactiveBorder);
-
+                Console.WriteLine("Normal is the Watchword");
             }
             catch (Exception e)
             {
                 System.Console.WriteLine("Got exception: " + e);
             }
 
-            LayoutRoot.Children.Add(new TableControl());
-            TableManager.IsFullScreen = false;
+            //LayoutRoot.Children.Add(new TableControl());
+            TableManager.IsFullScreen = true;
 
            
 
