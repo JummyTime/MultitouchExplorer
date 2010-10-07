@@ -11,7 +11,8 @@ namespace ExplorerLib.ContentTypes
 
         public ExplorerContentImage(XmlNode image_node) : base(image_node)
         {
-            BitmapImage bitmapImage = new BitmapImage(new Uri(getPath()));
+
+            BitmapImage bitmapImage = new BitmapImage(getPathUri());
             image = new Image();
             image.Source = bitmapImage;
         }

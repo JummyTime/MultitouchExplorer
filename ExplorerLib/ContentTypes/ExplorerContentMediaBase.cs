@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Xml;
 using ExplorerLib.Exceptions;
 
@@ -23,9 +24,14 @@ namespace ExplorerLib.ContentTypes
             }
         }
 
-        public String getPath()
+        public String getPathString()
         {
             return mediaPath;
+        }
+
+        public Uri getPathUri()
+        {
+            return new Uri(Path.GetFullPath(mediaPath));
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿  <map path="file:///images/campusmap.jpg" name="TNTECH Campus">
+﻿  <map path="../../../images/campusmap.jpg" name="TNTECH Campus">
     <events>
       <event name="TTU Campus Closes for Spring Break" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
         <tag>campus</tag>
@@ -12,7 +12,7 @@
       </event>
     </events>
     <regions>
-      <region name="Brown Hall" desc="Nobody knows">
+      <region name="Brown Hall" desc="ECE and ME Building Headquarters" defaultimageid="1">
         <points>
           <point x="3184.69592062729" y="1480.75524882272" />
           <point x="3207.34667397456" y="1476.22509815326" />
@@ -26,6 +26,9 @@
           <point x="3143.92456460219" y="1480.75524882272" />
           <point x="3162.04516728001" y="1471.69494748381" />
         </points>
+        <contents>
+          <image localid="1" path="../../../Images/BrownHall/brownhallfront.jpg" name="Front of Brown Hall" />
+        </contents>
       </region>
       <region name="Bruner Hall" desc="Computer Science Building" defaultimageid="1" defaultmapid="4">
         <points>
@@ -43,11 +46,11 @@
           <point x="3420.26375543898" y="1340.3205780696" />
         </points>
         <contents>
-          <image localid="1" path="file:///images/campusmap.png" name="Front of Bruner Hall" />
-          <image localid="2" path="file:///images/campusmap.png" name="Bruner Hall From the Sky" />
-          <video localid="3" path="file:///images/campusmap.png" name="Did You Know? Bruner Hall" />
+          <image localid="1" path="c:/images/campusmap.jpg" name="Front of Bruner Hall" />
+          <image localid="2" path="c:/images/campusmap.jpg" name="Bruner Hall From the Sky" />
+          <video localid="3" path="c:/images/campusmap.jpg" name="Did You Know? Bruner Hall" />
         
-          <map localid="4" path="file:///images/campusmap.png" name="First Floor">
+          <map localid="4" path="c:/images/campusmap.jpg" name="First Floor">
             <events>
               <event name="Seminar on Nerd Appreciation Day" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
                 <tag>forstudents</tag>
@@ -65,9 +68,9 @@
       </region>
     </regions>
     <contents>
-      <image path="file:///images/campusmap.png" name="TTU Logo" />
-      <image path="file:///images/campusmap.png" name="TTU Golden Eagle" />
-      <video path="file:///images/campusmap.png" name="TTU TV Spot" />
+      <image path="c:/images/campusmap.jpg" name="TTU Logo" />
+      <image path="c:/images/campusmap.jpg" name="TTU Golden Eagle" />
+      <video path="c:/images/campusmap.jpg" name="TTU TV Spot" />
     </contents>
     
   </map>

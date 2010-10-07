@@ -11,7 +11,7 @@ namespace ExplorerLib.ContentTypes
         public ExplorerContentVideo(XmlNode video_node) : base(video_node)
         {
             mediaElement = new MediaElement();
-            mediaElement.Source = new Uri(getPath());
+            mediaElement.Source = getPathUri();
         }
 
         public MediaElement getMediaElement()
