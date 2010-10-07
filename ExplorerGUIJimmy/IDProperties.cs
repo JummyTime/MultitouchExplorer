@@ -14,17 +14,17 @@ namespace ExplorerGUIJimmy
     
     class IDProperties
     {
-        private double myDistance;
-        private double MyContactTimer;
+        private double MyX;
+        private double MyY;
         private int myID;
 
         // Constructor. Set a few defaults
-        public IDProperties (int ID, double d, double t)
+        public IDProperties (int ID, double x, double y)
         {
             this.ID = ID;
-            this.distance = d;
+            this.X = x;
             //myDistance = d;
-            this.contactTimer = t;
+            this.Y = y;
             //MyContactTimer = t;       
         }
 
@@ -34,16 +34,16 @@ namespace ExplorerGUIJimmy
             set { myID = this.GetCorrectedID(value); }
         }
 
-        public double distance 
+        public double X
         {
-            get { return myDistance; }
-            set { myDistance = value; } 
+            get { return MyX; }
+            set { MyX = value; } 
         }
 
-        public double contactTimer
+        public double Y
         {
-            get { return MyContactTimer; }
-            set { MyContactTimer = value; }
+            get { return MyY; }
+            set { MyY = value; }
         }
 
         #region Static Utilities

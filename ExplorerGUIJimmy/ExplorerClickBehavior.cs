@@ -37,7 +37,7 @@ namespace ExplorerGUIJimmy
         {
             Point point = new Point();
             point = ((TouchContactEventArgs)e).TouchContact.GetPosition((InteractiveBorder)sender);
-            IDProperties idProperties = this.GetID(((TouchContactEventArgs)e).TouchContact.ID, point.X + point.Y, 12);
+            IDProperties idProperties = this.GetID(((TouchContactEventArgs)e).TouchContact.ID, point.X, point.Y);
             //Console.WriteLine(point.X);
             //Console.WriteLine(point.Y);
             //Console.WriteLine(point.ToString());
@@ -49,24 +49,25 @@ namespace ExplorerGUIJimmy
         {
             Point point = new Point();
             point = ((TouchContactEventArgs)e).TouchContact.GetPosition((InteractiveBorder)sender);
-            dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].distance = dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].distance - point.X - point.Y;
-            if (Math.Abs(dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].distance) < 10)
+            dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].X = dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].X - point.X;
+            dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].Y = dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].Y - point.Y;
+            if ((Math.Abs((dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].X))  < 10) & (Math.Abs(dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].Y) < 10))
             {
                 if (singleclick != null)
                 {
                     singleclick(sender, e);
                 }
-                Console.WriteLine("Normal is the Watchword: Single Click Event");
+                //Console.WriteLine("Normal is the Watchword: Single Click Event");
                
                 
             }
-            //IDProperties idProperties = this.GetID(((TouchContactEventArgs)e).TouchContact.ID,point.X + point.Y,12);
             //Console.WriteLine(point.X);
             //Console.WriteLine(point.Y);
             //Console.WriteLine(point.ToString());
             //Console.WriteLine("Normal is the Watchword: Welcome to Click Behavior Click Event");
             //Console.WriteLine(((TouchContactEventArgs)e).TouchContact.ID);
-            Console.WriteLine(dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].distance);
+            Console.WriteLine(dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].X);
+            Console.WriteLine(dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].Y);
             //Console.WriteLine(dictIDProperties[((TouchContactEventArgs)e).TouchContact.ID].ID);
         }
 
@@ -79,18 +80,19 @@ namespace ExplorerGUIJimmy
         // Given a mouse ID:
         // - create a dictionary entry storing IDProperties by mouse ID if we don't already have one
         // - return the IDProperties object that stores status information associated with that ID
-        private IDProperties GetID(int mouseID,double distance,double contactTime)
+        private IDProperties GetID(int mouseID,double x,double y)
         {
             // If we have the mouseID, return the corrected one
             if (dictIDProperties.ContainsKey(mouseID))
             {
-                dictIDProperties[mouseID].distance = distance;
+                dictIDProperties[mouseID].X = x;
+                dictIDProperties[mouseID].Y = y;
                 return dictIDProperties[mouseID];
             }
             else
             {
                 // We don't have it. Add a new ID Property then return it
-                IDProperties idProperties = new IDProperties(mouseID,distance,contactTime);
+                IDProperties idProperties = new IDProperties(mouseID,x,y);
                 dictIDProperties.Add(mouseID, idProperties);
                 return idProperties;
             }
