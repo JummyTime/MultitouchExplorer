@@ -16,7 +16,7 @@ namespace ExplorerGUICombined
         }
 
         private Dictionary<int, ClickResources> activeClicks = new Dictionary<int, ClickResources>();
-        public delegate void HandleSingleClickOnMap(Point original, Point scaled);
+        public delegate void HandleSingleClickOnMap(Point original);
 
         public event HandleSingleClickOnMap OnSingleClick;
 
@@ -52,13 +52,9 @@ namespace ExplorerGUICombined
                     if((screenPoint - startScreenPoint).Length < 5)
                     {
                         Point originalPoint = e.TouchContact.GetPosition(AssociatedObject.FrameworkElement);
-                        Point scaledPoint = new Point();
-                        scaledPoint.X = originalPoint.X / AssociatedObject.ScaleTransform.ScaleX * 2;
-                        scaledPoint.Y = originalPoint.Y / AssociatedObject.ScaleTransform.ScaleY * 2;
-
                         if (OnSingleClick != null)
                         {
-                            OnSingleClick(originalPoint, scaledPoint);
+                            OnSingleClick(originalPoint);
                         }
                     }
                    

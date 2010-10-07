@@ -44,8 +44,8 @@ namespace ExplorerGUICombined
             db2.Height = 50;
             db3.Width = 50;
             db3.Height = 50;
-            ib.Width = 10;
-            ib.Height = 10;
+            ib.Width = 30;
+            ib.Height = 30;
             canvas.Children.Add(db1);
             canvas.Children.Add(db2);
             canvas.Children.Add(db3);

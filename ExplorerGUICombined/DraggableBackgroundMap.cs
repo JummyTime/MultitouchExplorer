@@ -27,10 +27,11 @@ namespace ExplorerGUICombined
             parentCanvas.MaxHeight = mapImage.Source.Height;
 
             Child = parentCanvas;
-            IsRSTEnabled = false;
-            IsRNTEnabled = true;
+            IsRSTEnabled = true;
             IsRotateEnabled = false;
+            IsScaleEnabled = true;
             IsFlickEnabled = false;
+            IsStayInboundsEnabled = false;
 
             BehaviorSingleClickHelper clickHelper = new BehaviorSingleClickHelper();
             clickHelper.OnSingleClick += clickHelper_OnSingleClick;
@@ -44,7 +45,7 @@ namespace ExplorerGUICombined
                 Polygon regionPolygon = new Polygon();
                 foreach(ExplorerPoint point in region.getPoints())
                 {
-                    regionPolygon.Points.Add(new Point(point.getX() / 2 * ScaleTransform.ScaleX, point.getY() / 2 * ScaleTransform.ScaleY));
+                    regionPolygon.Points.Add(new Point(point.getX(), point.getY()));
                 }
 
                 regionPolygon.Fill = new SolidColorBrush(Color.FromArgb(128, 255, 0, 0));
@@ -52,9 +53,9 @@ namespace ExplorerGUICombined
             } 
         }
 
-        void clickHelper_OnSingleClick(Point original, Point scaled)
+        void clickHelper_OnSingleClick(Point original)
         {
-            ExplorerPoint explorerPoint = new ExplorerPoint(scaled.X, scaled.Y);
+            ExplorerPoint explorerPoint = new ExplorerPoint(original.X, original.Y);
             ExplorerRegion region = parentMap.getRegionContainingPoint(explorerPoint);
             if(region != null)
             {
@@ -69,16 +70,17 @@ namespace ExplorerGUICombined
             {
 
                 Ellipse ellipse = new Ellipse();
-                ellipse.Width = 6;
-                ellipse.Height = 6;
-                ellipse.Stroke = new SolidColorBrush(Color.FromArgb(128, 0, 0, 255));
-                Canvas.SetLeft(ellipse, original.X - 3);
-                Canvas.SetTop(ellipse, original.Y - 3);
+                ellipse.Width = 10;
+                ellipse.Height = 10;
+                ellipse.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
+                Canvas.SetLeft(ellipse, original.X - 5);
+                Canvas.SetTop(ellipse, original.Y - 5);
                 parentCanvas.Children.Add(ellipse);
 
             }
-            
-            Console.WriteLine("<point x=\"" + scaled.X + "\" y=\"" + scaled.Y + "\" />");
+
+            Console.WriteLine(ScaleTransform.ScaleX + ", " + ScaleTransform.ScaleY);
+            Console.WriteLine("<point x=\"" + original.X + "\" y=\"" + original.Y + "\" />");
              
 
         }
