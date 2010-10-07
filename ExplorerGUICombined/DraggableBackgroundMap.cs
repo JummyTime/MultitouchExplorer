@@ -31,6 +31,7 @@ namespace ExplorerGUICombined
             IsRotateEnabled = false;
             IsScaleEnabled = true;
             IsFlickEnabled = false;
+            IsStayInboundsEnabled = false;
 
             BehaviorSingleClickHelper clickHelper = new BehaviorSingleClickHelper();
             clickHelper.OnSingleClick += clickHelper_OnSingleClick;
