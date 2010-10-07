@@ -30,9 +30,7 @@ namespace ExplorerGUIMike
         public Window1()
         {
             InitializeComponent();
-
-            TableManager.Initialize(this, LayoutRoot);
-            TableManager.IsFullScreen = true;
+            TableManager.RunTable(this, LayoutRoot);
             try
             {
                 Explorer explorer = new Explorer("../../../Sample.xml");
@@ -40,7 +38,6 @@ namespace ExplorerGUIMike
                 Canvas c = new Canvas();
                 DraggableBackgroundMap backgroundMap = new DraggableBackgroundMap(rootMap.getImage());
                 c.Children.Add(backgroundMap);
-                TouchInputManager.AddTouchContactDownHandler(interactiveBorder, touchDown);
                 LayoutRoot.Children.Add(c);
 
             }
@@ -49,18 +46,11 @@ namespace ExplorerGUIMike
                 System.Console.WriteLine("Got exception: " + e);
             }
 
-            //LayoutRoot.Children.Add(new TableControl());
-
+            TableManager.IsFullScreen = true;
            
 
 
             
-        }
-
-        public  void touchDown(object sender, libSMARTMultiTouch.Input.TouchContactEventArgs e)
-        {
-            Point p = interactiveBorder.PointFromScreen(e.TouchContact.Position);
-            Console.WriteLine("Down at: " + p.X + ", " + p.Y);
         }
     }
 }

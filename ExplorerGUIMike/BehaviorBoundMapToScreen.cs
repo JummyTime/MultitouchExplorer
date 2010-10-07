@@ -21,7 +21,6 @@ namespace ExplorerGUIMike
         {
             base.OnAttached();
 
-            AssociatedObject.RotateTransformUpdated += AssociatedObject_RotateTransformUpdated;
             AssociatedObject.TranslateTransformUpdated += AssociatedObject_TranslateTransformUpdated;
             
             double widthMinScale = Screen.PrimaryScreen.Bounds.Width / imageWidth;
@@ -56,14 +55,6 @@ namespace ExplorerGUIMike
             AssociatedObject.TranslateTransformUpdated += AssociatedObject_TranslateTransformUpdated;
         }
            
-
-        void AssociatedObject_RotateTransformUpdated(object sender, EventArgs e)
-        {
-            AssociatedObject.RotateTransformUpdated -= new EventHandler(AssociatedObject_RotateTransformUpdated);
-            AssociatedObject.RotateTransform.Angle = 0;
-            AssociatedObject.RotateTransformUpdated +=new EventHandler(AssociatedObject_RotateTransformUpdated);
-            
-        }
 
 
 
