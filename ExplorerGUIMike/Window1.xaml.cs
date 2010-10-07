@@ -25,8 +25,6 @@ namespace ExplorerGUIMike
     /// </summary>
     public partial class Window1 : Window
     {
-        private DraggableBorder interactiveBorder;
-        private BehaviorBoundMapToScreen boundMap;
         public Window1()
         {
             InitializeComponent();
@@ -36,7 +34,7 @@ namespace ExplorerGUIMike
                 Explorer explorer = new Explorer("../../../Sample.xml");
                 ExplorerContentMap rootMap = explorer.getRootContentMap();
                 Canvas c = new Canvas();
-                DraggableBackgroundMap backgroundMap = new DraggableBackgroundMap(rootMap.getImage());
+                DraggableBackgroundMap backgroundMap = new DraggableBackgroundMap(rootMap);
                 c.Children.Add(backgroundMap);
                 LayoutRoot.Children.Add(c);
 

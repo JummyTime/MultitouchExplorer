@@ -9,6 +9,12 @@ namespace ExplorerLib
         private double x;
         private double y;
 
+        public ExplorerPoint(double x_point, double y_point)
+        {
+            x = x_point;
+            y = y_point;
+        }
+
         public ExplorerPoint(XmlNode point_node)
         {
             foreach (XmlAttribute childAttribute in point_node.Attributes)

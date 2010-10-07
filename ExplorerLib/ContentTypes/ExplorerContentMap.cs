@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Collections.Generic;
+using System.Xml;
 using ExplorerLib.Containers;
 
 namespace ExplorerLib.ContentTypes
@@ -32,6 +33,11 @@ namespace ExplorerLib.ContentTypes
         public ExplorerRegion getRegionContainingPoint(ExplorerPoint p)
         {
             return regionsContainer.getRegionContainingPoint(p);
+        }
+
+        public List<ExplorerRegion> getRegions()
+        {
+            return regionsContainer.getRegions();
         }
 
     }

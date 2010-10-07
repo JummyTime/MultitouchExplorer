@@ -24,6 +24,7 @@ namespace ExplorerLib.Containers
 
         public ExplorerRegion getRegionContainingPoint(ExplorerPoint p)
         {
+
             foreach (ExplorerRegion currentRegion in regionList)
             {
                 if (currentRegion.regionContainsPoint(p)) return currentRegion;

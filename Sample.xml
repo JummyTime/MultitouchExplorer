@@ -1,4 +1,4 @@
-﻿  <map path="file:///images/campusmap.png" name="TNTECH Campus">
+﻿  <map path="file:///images/campusmap.jpg" name="TNTECH Campus">
     <events>
       <event name="TTU Campus Closes for Spring Break" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
         <tag>campus</tag>
@@ -12,13 +12,35 @@
       </event>
     </events>
     <regions>
-      <region name="Bruner Hall" desc="Short description goes here" defaultimageid="1" defaultmapid="4">
+      <region name="Brown Hall" desc="Nobody knows">
         <points>
-          <point x="1" y="1" />
-          <point x="3" y="3" />
-          <point x="4" y="2" />
-          <point x="2" y="3" />
-          <point x="6" y="4" />
+          <point x="3184.69592062729" y="1480.75524882272" />
+          <point x="3207.34667397456" y="1476.22509815326" />
+          <point x="3248.11802999966" y="1449.04419413653" />
+          <point x="3248.11802999966" y="1385.62208476415" />
+          <point x="2998.95974317961" y="1281.42861936667" />
+          <point x="2967.24868849342" y="1290.48892070558" />
+          <point x="2917.41703112941" y="1340.3205780696" />
+          <point x="2917.41703112941" y="1349.38087940851" />
+          <point x="2921.94718179886" y="1390.15223543361" />
+          <point x="3143.92456460219" y="1480.75524882272" />
+          <point x="3162.04516728001" y="1471.69494748381" />
+        </points>
+      </region>
+      <region name="Bruner Hall" desc="Computer Science Building" defaultimageid="1" defaultmapid="4">
+        <points>
+          <point x="3424.79390610843" y="1331.26027673069" />
+          <point x="3433.85420744734" y="1331.26027673069" />
+          <point x="3447.44465945571" y="1331.26027673069" />
+          <point x="3506.33661815863" y="1313.13967405286" />
+          <point x="3510.86676882809" y="1263.30801668885" />
+          <point x="3510.86676882809" y="1249.71756468048" />
+          <point x="3293.41953669422" y="1154.58440062192" />
+          <point x="3239.05772866075" y="1154.58440062192" />
+          <point x="3189.22607129674" y="1199.88590731647" />
+          <point x="3198.28637263565" y="1218.0065099943" />
+          <point x="3198.28637263565" y="1254.24771534994" />
+          <point x="3420.26375543898" y="1340.3205780696" />
         </points>
         <contents>
           <image localid="1" path="file:///images/campusmap.png" name="Front of Bruner Hall" />
