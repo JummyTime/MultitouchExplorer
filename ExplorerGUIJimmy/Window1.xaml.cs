@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using libSMARTMultiTouch.Input;
 using libSMARTMultiTouch.Table;
 using libSMARTMultiTouch.Controls;
 using libSMARTMultiTouch.Behaviors;
@@ -40,6 +41,8 @@ namespace MultitouchExplorer
                 RSTBehavior rnt = new RSTBehavior();
                 interactiveBorder.Attach(rnt);
                 interactiveBorder.Attach(ecb);
+                
+                ecb.singleclick += new TouchContactEventHandler(singleClick);
                 interactiveBorder.Child = rootMap.getImage();
                 LayoutRoot.Children.Add(interactiveBorder);
                 //Console.WriteLine("Normal is the Watchword");
@@ -50,12 +53,11 @@ namespace MultitouchExplorer
             }
 
             //LayoutRoot.Children.Add(new TableControl());
-            TableManager.IsFullScreen = false;
-
-           
-
-
-            
+            TableManager.IsFullScreen = false;    
+        }
+        public void singleClick(object sender, TouchContactEventArgs e)
+        {
+            Console.WriteLine("This would make a nice stopping place");
         }
     }
 }

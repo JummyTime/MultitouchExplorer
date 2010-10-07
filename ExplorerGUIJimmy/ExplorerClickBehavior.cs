@@ -29,6 +29,7 @@ namespace ExplorerGUIJimmy
             m_element = base.AssociatedObject.FrameworkElement;
             ((InteractiveBorder)m_element).TouchDown += new TouchContactEventHandler(Point_TouchDown_Confirm);
             ((InteractiveBorder)m_element).TouchUp += new TouchContactEventHandler(Point_TouchUp_Confirm);
+            
             //Console.WriteLine("Normal is the Watchword: Welcome to Click Behavior OnAttach()");
         }
 
