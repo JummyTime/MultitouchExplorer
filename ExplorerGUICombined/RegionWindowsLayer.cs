@@ -1,32 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using ExplorerLib;
+using libSMARTMultiTouch.Controls;
+
 namespace ExplorerGUICombined
 {
- /*   public class RegionWindowsLayer : Canvas
+    public class RegionWindowsLayer
     {
-        public RegionWindowsLayer(DraggableBackgroundMap map)
+        private Canvas parentCanvas;
+        private BackgroundMapLayer mapLayer;
+        public RegionWindowsLayer(Canvas parent_canvas, BackgroundMapLayer map)
         {
-            Background = new Sol
+            parentCanvas = parent_canvas;
+            mapLayer = map;
+            mapLayer.OnRegionClick += mapLayer_OnRegionClick;
         }
 
-        public AddRegionWindow(RegionWindow window, double x, double y)
+        void mapLayer_OnRegionClick(ExplorerRegion region, Color highlight_color, Point position)
         {
-            Canvas.SetTop(window, x);
-            Canvas.SetLeft(window, y);
-            window.OnRegionClose +=new RegionWindow.HandleRegionClose(window_OnRegionClose);
-            Children.Add(window);
-        }
-
-        void  window_OnRegionClose(RegionWindow window)
-        {
- 	        Children.Remove(window);
+            RegionWindow window = new RegionWindow(region);
+            window.BorderBrush = new SolidColorBrush(highlight_color);
+            window.BorderThickness = new Thickness(5);
+            Canvas.SetLeft(window, 0);
+            parentCanvas.Children.Add(window);
         }
 
     }
-  */
 
 
 }

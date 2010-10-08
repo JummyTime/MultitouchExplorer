@@ -12,7 +12,7 @@
       </event>
     </events>
     <regions>
-      <region name="Brown Hall" desc="ECE and ME Building Headquarters" defaultimageid="1">
+      <region name="Brown Hall" defaultimageid="1" defaulttextid="2">
         <points>
           <point x="971.763827897146" y="462.385723721651" />
           <point x="968.516500194797" y="444.673027163386" />
@@ -30,9 +30,10 @@
         </points>
         <contents>
           <image localid="1" path="../../../Images/BrownHall/brownhallfront.jpg" name="Front of Brown Hall" />
+          <text localid="2">ECE and ME Building Headquarters</text>
         </contents>
       </region>
-      <region name="Bruner Hall" desc="Computer Science Building" defaultimageid="1" defaultmapid="4">
+      <region name="Bruner Hall" defaulttextid="1">
         <points>
           <point x="1141.89773635375" y="442.742441784844" />
           <point x="1147.45217050168" y="444.878762610971" />
@@ -47,11 +48,8 @@
           <point x="1062.4266016218" y="419.242912697439" />
         </points>
         <contents>
-          <image localid="1" path="c:/images/campusmap.jpg" name="Front of Bruner Hall" />
-          <image localid="2" path="c:/images/campusmap.jpg" name="Bruner Hall From the Sky" />
-          <video localid="3" path="c:/images/campusmap.jpg" name="Did You Know? Bruner Hall" />
-        
-          <map localid="4" path="c:/images/campusmap.jpg" name="First Floor">
+          <text localid="1">Computer Scientists, Math Majors, and Physicists Live Here</text>
+          <map localid="2" path="c:/images/campusmap.jpg" name="First Floor">
             <events>
               <event name="Seminar on Nerd Appreciation Day" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
                 <tag>forstudents</tag>

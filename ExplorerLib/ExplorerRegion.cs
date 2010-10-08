@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using ExplorerLib.Containers;
+using ExplorerLib.ContentTypes;
 using ExplorerLib.Exceptions;
 
 namespace ExplorerLib
@@ -13,6 +14,8 @@ namespace ExplorerLib
         private ExplorerContentsContainer contentsContainer;
 
         private String name;
+        private String defaultImageLocalId;
+        private String defaultTextLocalId;
         public ExplorerRegion(XmlNode region_node)
         {
             foreach (XmlAttribute attribute in region_node.Attributes)
@@ -20,6 +23,14 @@ namespace ExplorerLib
                 if (attribute.Name == "name")
                 {
                     name = attribute.Value;
+                }
+                else if(attribute.Name == "defaultimageid")
+                {
+                    defaultImageLocalId = attribute.Value;
+                }
+                else if (attribute.Name == "defaulttextid")
+                {
+                    defaultTextLocalId = attribute.Value;
                 }
             }
 
@@ -42,6 +53,42 @@ namespace ExplorerLib
                 else if (childNode.Name == "contents")
                 {
                     contentsContainer = new ExplorerContentsContainer(childNode);
+                }
+            }
+
+            if(defaultImageLocalId != null)
+            {
+                ExplorerContentBase baseContentItem = contentsContainer.getByLocalId(defaultImageLocalId);
+                if(baseContentItem == null)
+                {
+                    defaultImageLocalId = null;
+                    throw new ExplorerParseXMLException(
+                    "Default Image ID provided does not exist in node. Node: '" + region_node.OuterXml + "'", null);
+                }
+
+                if(!(baseContentItem is ExplorerContentImage))
+                {
+                    defaultImageLocalId = null;
+                    throw new ExplorerParseXMLException(
+                    "Default Image ID provided does not reference an image. Node: '" + region_node.OuterXml + "'", null);
+                }
+            }
+
+            if (defaultTextLocalId != null)
+            {
+                ExplorerContentBase baseContentItem = contentsContainer.getByLocalId(defaultTextLocalId);
+                if (baseContentItem == null)
+                {
+                    defaultTextLocalId = null;
+                    throw new ExplorerParseXMLException(
+                    "Default text ID provided does not exist in node. Node: '" + region_node.OuterXml + "'", null);
+                }
+
+                if (!(baseContentItem is ExplorerContentText))
+                {
+                    defaultTextLocalId = null;
+                    throw new ExplorerParseXMLException(
+                    "Default text ID provided does not reference an text. Node: '" + region_node.OuterXml + "'", null);
                 }
             }
         }
@@ -78,6 +125,17 @@ namespace ExplorerLib
         public List<ExplorerPoint> getPoints()
         {
             return pointsContainer.getPoints();
+        }
+
+        public ExplorerContentImage getDefaultContentImage()
+        {
+            if (defaultImageLocalId == null) return null;
+            return (ExplorerContentImage)contentsContainer.getByLocalId(defaultImageLocalId);
+        }
+        public ExplorerContentText getDefaultContentText()
+        {
+            if (defaultTextLocalId == null) return null;
+            return (ExplorerContentText)contentsContainer.getByLocalId(defaultTextLocalId);
         }
     }
 }

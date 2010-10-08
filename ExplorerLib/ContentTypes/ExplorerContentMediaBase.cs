@@ -7,6 +7,8 @@ namespace ExplorerLib.ContentTypes
 {
     public abstract class ExplorerContentMediaBase : ExplorerContentBase
     {
+
+        private String name;
         private String mediaPath;
 
         public ExplorerContentMediaBase(XmlNode content_node) : base(content_node)
@@ -17,10 +19,20 @@ namespace ExplorerLib.ContentTypes
                 {
                     mediaPath = attribute.Value;
                 }
+                else if (attribute.Name == "name")
+                {
+                    name = attribute.Value;
+                }
             }
-            if (mediaPath == "")
+            if (mediaPath == null)
             {
                 throw new ExplorerParseXMLException("Path not supplied for media tag '" + getName() + "'", null);
+            }
+
+            if (name == null)
+            {
+                throw new ExplorerParseXMLException(
+                    "Name not supplied for media content tag. Node: '" + content_node.OuterXml + "'", null);
             }
         }
 
@@ -32,6 +44,11 @@ namespace ExplorerLib.ContentTypes
         public Uri getPathUri()
         {
             return new Uri(Path.GetFullPath(mediaPath));
+        }
+
+        public String getName()
+        {
+            return name;
         }
     }
 }

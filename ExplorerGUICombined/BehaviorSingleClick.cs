@@ -16,7 +16,7 @@ namespace ExplorerGUICombined
         }
 
         private Dictionary<int, ClickResources> activeClicks = new Dictionary<int, ClickResources>();
-        public delegate void HandleSingleClickOnMap(Point original);
+        public delegate void HandleSingleClickOnMap(Point relative_point, Point screen_point);
 
         public event HandleSingleClickOnMap OnSingleClick;
 
@@ -45,16 +45,16 @@ namespace ExplorerGUICombined
 
                 activeClicks.Remove(e.TouchContact.ID);
 
-
+                
+                Point relativePoint = e.TouchContact.GetPosition(AssociatedObject.FrameworkElement);
+                Point screenPoint = AssociatedObject.FrameworkElement.PointToScreen(relativePoint);
                 if((DateTime.Now - startTime).TotalMilliseconds < 500)
                 {
-                    Point screenPoint = e.TouchContact.GetPosition(Application.Current.MainWindow);
                     if((screenPoint - startScreenPoint).Length < 5)
                     {
-                        Point originalPoint = e.TouchContact.GetPosition(AssociatedObject.FrameworkElement);
                         if (OnSingleClick != null)
                         {
-                            OnSingleClick(originalPoint);
+                            OnSingleClick(relativePoint, screenPoint);
                         }
                     }
                    

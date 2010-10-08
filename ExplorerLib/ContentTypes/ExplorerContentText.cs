@@ -12,7 +12,7 @@ namespace ExplorerLib.ContentTypes
             textContent = text_node.InnerText;
         }
 
-        public String getTextContent()
+        public String getText()
         {
             return textContent;
         }

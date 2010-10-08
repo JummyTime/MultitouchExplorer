@@ -97,7 +97,7 @@
   <ItemGroup>
     <Compile Include="BehaviorBoundMapToScreen.cs" />
     <Compile Include="BehaviorSingleClick.cs" />
-    <Compile Include="DraggableBackgroundMap.cs" />
+    <Compile Include="BackgroundMapLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

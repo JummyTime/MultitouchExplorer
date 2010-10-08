@@ -39,5 +39,15 @@ namespace ExplorerLib.Containers
                 contentList.Add(newItem.getLocalId(), newItem);
             }
         }
+
+        public ExplorerContentBase getByLocalId(String local_id)
+        {
+            if(contentList.ContainsKey(local_id))
+            {
+                return contentList[local_id];
+            }
+
+            return null;
+        }
     }
 }
