@@ -5,7 +5,7 @@ using System.Windows.Interactivity;
 using libSMARTMultiTouch;
 using Application = System.Windows.Application;
 
-namespace ExplorerGUICombined
+namespace ExplorerGUICombined.Behaviors
 {
     public class BehaviorSingleClickHelper : Behavior<InteractiveFrameworkElement>
     {

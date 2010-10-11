@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interactivity;
 using libSMARTMultiTouch;
 using System.Windows.Forms;
 using Application = System.Windows.Application;
 
-namespace ExplorerGUICombined
+namespace ExplorerGUICombined.Behaviors
 {
     public class BehaviorBoundMapToScreen : Behavior<InteractiveFrameworkElement>
     {
         private readonly double imageWidth;
         private readonly double imageHeight;
-
-        public BehaviorBoundMapToScreen(double image_width, double image_height)
+        private readonly Canvas rootScreenCanvas;
+        public BehaviorBoundMapToScreen(Canvas root_screen_canvas, double image_width, double image_height)
         {
+            rootScreenCanvas = root_screen_canvas; 
             imageWidth = image_width;
             imageHeight = image_height;
         }
@@ -29,8 +31,8 @@ namespace ExplorerGUICombined
             if (widthMinScale > heightMinScale) minScaleAmount = widthMinScale;
             else minScaleAmount = heightMinScale;
             AssociatedObject.MinScale = minScaleAmount;
-            AssociatedObject.TranslateTransform.X = -imageWidth / 2 + Screen.PrimaryScreen.Bounds.Width / 2;
-            AssociatedObject.TranslateTransform.Y = -imageHeight / 2 + Screen.PrimaryScreen.Bounds.Height / 2;
+            AssociatedObject.TranslateTransform.X = -imageWidth / 2.0 + rootScreenCanvas.ActualWidth / 2.0;
+            AssociatedObject.TranslateTransform.Y = -imageHeight / 2.0 + rootScreenCanvas.ActualHeight / 2.0;
             AssociatedObject.ScaleTransform.ScaleX = minScaleAmount;
             AssociatedObject.ScaleTransform.ScaleY = minScaleAmount;
         }
@@ -40,15 +42,15 @@ namespace ExplorerGUICombined
             double currentWidth = imageWidth*AssociatedObject.ScaleTransform.ScaleX;
             double currentHeight = imageHeight * AssociatedObject.ScaleTransform.ScaleY;
             Point position = AssociatedObject.FrameworkElement.TranslatePoint(new Point(),
-                                                                              Application.Current.MainWindow);
+                                                                             rootScreenCanvas);
 
             AssociatedObject.TranslateTransformUpdated -= AssociatedObject_TranslateTransformUpdated;
 
             if (position.X > 0) AssociatedObject.TranslateTransform.X  -= position.X;
             if (position.Y > 0) AssociatedObject.TranslateTransform.Y -= position.Y;
 
-            double totalBufferX = (currentWidth - Screen.PrimaryScreen.Bounds.Width);
-            double totalBufferY = (currentHeight - Screen.PrimaryScreen.Bounds.Height);
+            double totalBufferX = (currentWidth - rootScreenCanvas.ActualWidth);
+            double totalBufferY = (currentHeight - rootScreenCanvas.ActualHeight);
             if (position.X < -totalBufferX) AssociatedObject.TranslateTransform.X -= position.X + totalBufferX;
             if (position.Y < -totalBufferY) AssociatedObject.TranslateTransform.Y -= position.Y + totalBufferY;
 

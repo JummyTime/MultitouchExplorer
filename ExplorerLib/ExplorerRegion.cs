@@ -137,5 +137,10 @@ namespace ExplorerLib
             if (defaultTextLocalId == null) return null;
             return (ExplorerContentText)contentsContainer.getByLocalId(defaultTextLocalId);
         }
+
+        public Dictionary<String, ExplorerContentBase> getContentsDictionary()
+        {
+            return contentsContainer.getContentsDictionary();
+        }
     }
 }

@@ -49,5 +49,10 @@ namespace ExplorerLib.Containers
 
             return null;
         }
+
+        public Dictionary<String, ExplorerContentBase> getContentsDictionary()
+        {
+            return contentList;
+        }
     }
 }

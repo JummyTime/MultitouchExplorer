@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using ExplorerLib.Containers;
 
@@ -40,5 +41,9 @@ namespace ExplorerLib.ContentTypes
             return regionsContainer.getRegions();
         }
 
+        public Dictionary<String, ExplorerContentBase> getContentsDictionary()
+        {
+            return contentsContainer.getContentsDictionary();
+        }
     }
 }

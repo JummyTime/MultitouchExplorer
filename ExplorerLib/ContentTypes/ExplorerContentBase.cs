@@ -6,7 +6,9 @@ namespace ExplorerLib.ContentTypes
 {
     public abstract class ExplorerContentBase
     {
-        private String localID = "";
+        private String localID;
+        private String name;
+        private String shortName;
 
         public ExplorerContentBase(XmlNode content_node)
         {
@@ -17,6 +19,14 @@ namespace ExplorerLib.ContentTypes
                 {
                     localID = attribute.Value;
                 }
+                else if (attribute.Name == "name")
+                {
+                    name = attribute.Value;
+                }
+                else if (attribute.Name == "shortname")
+                {
+                    shortName = attribute.Value;
+                }
             }
 
             if (localID == null)
@@ -24,12 +34,34 @@ namespace ExplorerLib.ContentTypes
                 //Warning, no localid provided. Generate a UUID and use that
                 localID = Guid.NewGuid().ToString();
             }
+            if (name == null)
+            {
+                throw new ExplorerParseXMLException(
+                    "Name not supplied for content tag. Node: '" + content_node.OuterXml + "'", null);
+            }
+
+            if (shortName == null)
+            {
+                shortName = name;
+            }
         }
 
 
         public String getLocalId()
         {
             return localID;
+        }
+
+
+        public String getName()
+        {
+            return name;
+        }
+
+
+        public String getShortName()
+        {
+            return shortName;
         }
     }
 }
