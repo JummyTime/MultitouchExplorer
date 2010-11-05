@@ -11,22 +11,22 @@ namespace ExplorerLib.ContentTypes
         private ExplorerContentsContainer contentsContainer;
         private readonly ExplorerRegionsContainer regionsContainer;
 
-        public ExplorerContentMap(XmlNode map_node)
-            : base(map_node)
+        public ExplorerContentMap(ExplorerConfiguration configuration, XmlNode map_node)
+            : base(configuration, map_node)
         {
             foreach (XmlNode childNode in map_node.ChildNodes)
             {
-                if (childNode.Name == "events")
+                if (childNode.Name == configuration.getEventsTag())
                 {
-                    eventsContainer = new ExplorerEventsContainer(childNode);
+                    eventsContainer = new ExplorerEventsContainer(configuration, childNode);
                 }
-                else if (childNode.Name == "content")
+                else if (childNode.Name == configuration.getContentsTag())
                 {
-                    contentsContainer = new ExplorerContentsContainer(childNode);
+                    contentsContainer = new ExplorerContentsContainer(configuration, childNode);
                 }
-                else if (childNode.Name == "regions")
+                else if (childNode.Name == configuration.getRegionsTag())
                 {
-                    regionsContainer = new ExplorerRegionsContainer(this, childNode);
+                    regionsContainer = new ExplorerRegionsContainer(configuration, this, childNode);
                 }
             }
         }

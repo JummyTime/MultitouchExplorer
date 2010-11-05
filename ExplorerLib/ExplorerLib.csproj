@@ -55,6 +55,7 @@
     <Compile Include="ContentTypes\ExplorerContentBase.cs" />
     <Compile Include="Containers\ExplorerContentsContainer.cs" />
     <Compile Include="ContentTypes\ExplorerContentImage.cs" />
+    <Compile Include="ExplorerConfiguration.cs" />
     <Compile Include="ExplorerPoint.cs" />
     <Compile Include="ExplorerRegion.cs" />
     <Compile Include="ContentTypes\ExplorerContentMediaBase.cs" />

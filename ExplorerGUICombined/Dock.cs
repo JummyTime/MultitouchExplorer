@@ -1,21 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using libSMARTMultiTouch.Controls;
+using libSMARTMultiTouch.Input;
 
 namespace ExplorerGUICombined
 {
     public class Dock : InteractiveBorder
     {
-        private GUIConfiguration guiConfig;
-        private bool dockInUse;
-        private List<ContentCardBase> contents = new List<ContentCardBase>();
+        private List<DockIcon> contents = new List<DockIcon>();
 
         private StackPanel emptyDockContents;
-        public Dock(GUIConfiguration gui_config)
+        private Canvas fullDockContentsFiller = new Canvas();
+        private Canvas parentCanvas;
+
+        public Dock(Canvas parent_canvas)
         {
-            guiConfig = gui_config;
+            parentCanvas = parent_canvas;
 
             emptyDockContents = new StackPanel();
             emptyDockContents.Orientation = Orientation.Horizontal;
@@ -31,11 +34,11 @@ namespace ExplorerGUICombined
             emptyDockContents.Children.Add(dropToAdd);
 
             Image iconImage = new Image();
-            iconImage.Source = guiConfig.getAddToDockImage();
+            //iconImage.Source = "";// guiConfig.getAddToDockImage();
             iconImage.Width = 40;
             iconImage.Height = 40;
             iconImage.Margin = new Thickness(5,0,5,0);
-            emptyDockContents.Children.Add(iconImage);
+            //emptyDockContents.Children.Add(iconImage);
 
             MinHeight = 80;
             MaxHeight = 80;
@@ -43,57 +46,47 @@ namespace ExplorerGUICombined
             BorderBrush = new SolidColorBrush(Colors.White);
             BorderThickness = new Thickness(2, 2, 2, 0);
             Child = emptyDockContents;
+            SizeChanged += Dock_SizeChanged;
+        }
+
+        void Dock_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Console.WriteLine("SIZE CHANGED: " + e.PreviousSize + " -> " + e.NewSize);
+            TranslateTransform.X += (e.PreviousSize.Width - e.NewSize.Width)/2.0;
+            TranslateTransform.Y -= 100;
         }
 
         public bool isDockInUse()
         {
-            return dockInUse;
+            return contents.Count > 0;
         }
 
         public void addToDock(ContentCardBase card)
         {
-
-            StackPanel dockCanvas = new StackPanel();
-            dockCanvas.Orientation = Orientation.Horizontal;
-            dockCanvas.Margin = new Thickness(5, 5, 5, 5);
-            contents.AddRange(card.getCardContents());
-            if(contents.Count > 0)
+            List<ContentCardBase> cardContents = card.getCardContents();
+            if(cardContents.Count > 0)
             {
-
-                dockInUse = true;
-                foreach (ContentCardBase childCard in contents)
+                Child = fullDockContentsFiller;
+                foreach (ContentCardBase childCard in cardContents)
                 {
-                    StackPanel currentIcon = new StackPanel();
-                    Image icon = childCard.getCardIcon();
-                    icon.MaxHeight = 50;
-                    icon.MinHeight = 50;
-                    icon.MaxWidth = 75;
-                    icon.Margin = new Thickness(5, 0, 5, 0);
-                    currentIcon.Children.Add(icon);
+                    DockIcon icon = new DockIcon(parentCanvas, childCard);
+                    icon.Loaded += icon_Loaded;
+                    contents.Add(icon);
+                    parentCanvas.Children.Add(icon);
+                } 
 
-                    TextBox iconLabel = new TextBox();
-                    iconLabel.Background = new SolidColorBrush(Colors.Transparent);
-                    iconLabel.BorderBrush = new SolidColorBrush(Colors.Transparent);
-                    iconLabel.Foreground = new SolidColorBrush(Colors.White);
-                    iconLabel.Text = childCard.getCardIconText();
-                    iconLabel.FontSize = 10;
-                    iconLabel.MaxWidth = 75;
-                    iconLabel.MaxLines = 2;
-                    iconLabel.HorizontalAlignment = HorizontalAlignment.Center;
-
-                    currentIcon.Children.Add(iconLabel);
-                    dockCanvas.Children.Add(currentIcon);
-                }
-
-                Child = dockCanvas;
             }
-            else
+        }
+
+        void icon_Loaded(object sender, RoutedEventArgs e)
+        {
+            double totalWidth = 0;
+            foreach(DockIcon icon in contents)
             {
-                dockInUse = false;
-                Child = emptyDockContents;
+                totalWidth += icon.ActualWidth;
             }
 
-            
+            fullDockContentsFiller.Width = totalWidth;
         }
         
     }

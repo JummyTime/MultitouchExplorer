@@ -10,14 +10,14 @@ namespace ExplorerLib.Containers
 
         private List<ExplorerRegion> regionList = new List<ExplorerRegion>();
 
-        public ExplorerRegionsContainer(ExplorerContentMap parent_map, XmlNode regions_node)
+        public ExplorerRegionsContainer(ExplorerConfiguration configuration, ExplorerContentMap parent_map, XmlNode regions_node)
         {
             parentMap = parent_map;
             foreach (XmlNode childNode in regions_node.ChildNodes)
             {
-                if (childNode.Name == "region")
+                if (childNode.Name == configuration.getRegionTag())
                 {
-                    regionList.Add(new ExplorerRegion(childNode));
+                    regionList.Add(new ExplorerRegion(configuration, childNode));
                 }
             }
         }

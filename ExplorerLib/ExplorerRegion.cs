@@ -16,7 +16,7 @@ namespace ExplorerLib
         private String name;
         private String defaultImageLocalId;
         private String defaultTextLocalId;
-        public ExplorerRegion(XmlNode region_node)
+        public ExplorerRegion(ExplorerConfiguration configuration, XmlNode region_node)
         {
             foreach (XmlAttribute attribute in region_node.Attributes)
             {
@@ -42,17 +42,17 @@ namespace ExplorerLib
 
             foreach (XmlNode childNode in region_node.ChildNodes)
             {
-                if (childNode.Name == "events")
+                if (childNode.Name == configuration.getEventsTag())
                 {
-                    eventsContainer = new ExplorerEventsContainer(childNode);
+                    eventsContainer = new ExplorerEventsContainer(configuration, childNode);
                 }
-                else if (childNode.Name == "points")
+                else if (childNode.Name == configuration.getPointsTag())
                 {
-                    pointsContainer = new ExplorerPointsContainer(childNode);
+                    pointsContainer = new ExplorerPointsContainer(configuration, childNode);
                 }
-                else if (childNode.Name == "contents")
+                else if (childNode.Name == configuration.getContentsTag())
                 {
-                    contentsContainer = new ExplorerContentsContainer(childNode);
+                    contentsContainer = new ExplorerContentsContainer(configuration, childNode);
                 }
             }
 

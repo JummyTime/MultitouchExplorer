@@ -12,16 +12,16 @@ namespace ExplorerLib
         private DateTime startDate = new DateTime(0);
         private DateTime endDate = new DateTime(0);
 
-        public ExplorerEvent(XmlNode event_node)
+        public ExplorerEvent(ExplorerConfiguration configuration, XmlNode event_node)
         {
             foreach (XmlAttribute attribute in event_node.Attributes)
             {
-                if (attribute.Name == "name")
+                if (attribute.Name == configuration.getEventNameAttr())
                 {
                     eventName = attribute.Value;
                 }
 
-                else if (attribute.Name == "start")
+                else if (attribute.Name == configuration.getEventStartTimeAttr())
                 {
                     try
                     {
@@ -32,7 +32,7 @@ namespace ExplorerLib
                         throw new ExplorerParseXMLException("Start Date is invalid for '" + eventName + "'", ex);
                     }
                 }
-                else if (attribute.Name == "end")
+                else if (attribute.Name == configuration.getEventEndTimeAttr())
                 {
                     try
                     {
@@ -58,7 +58,7 @@ namespace ExplorerLib
 
             foreach (XmlNode childNode in event_node.ChildNodes)
             {
-                if (childNode.Name == "tag")
+                if (childNode.Name == configuration.getEventTagTag())
                 {
                     eventTags.Add(childNode.InnerText.ToLower());
                 }

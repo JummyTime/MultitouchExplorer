@@ -8,22 +8,25 @@ namespace ExplorerLib
     public class Explorer
     {
         private ExplorerContentMap rootMap;
+        private ExplorerConfiguration configuration;
 
-        public Explorer(String file_name)
+        public Explorer(String config_name, String file_name)
         {
+            configuration = new ExplorerConfiguration(config_name);
+
             XmlTextReader xmlReader = new XmlTextReader(file_name);
             if (xmlReader.Read())
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(xmlReader);
 
-                if (xmlDoc.ChildNodes.Count == 1 && xmlDoc.ChildNodes.Item(0).Name == "map")
+                if (xmlDoc.ChildNodes.Count == 1 && xmlDoc.ChildNodes.Item(0).Name == configuration.getMapTag())
                 {
-                    rootMap = new ExplorerContentMap(xmlDoc.ChildNodes.Item(0));
+                    rootMap = new ExplorerContentMap(configuration, xmlDoc.ChildNodes.Item(0));
                 }
                 else
                 {
-                    throw new ExplorerLoadXMLException("Multiple Root Tags or Root tag not 'map'", null);
+                    throw new ExplorerLoadXMLException("Multiple Root Tags or Root tag not '" + configuration.getMapTag() + "'", null);
                 }
             }
             else
@@ -35,6 +38,11 @@ namespace ExplorerLib
         public ExplorerContentMap getRootContentMap()
         {
             return rootMap;
+        }
+
+        public ExplorerConfiguration getConfiguration()
+        {
+            return configuration;
         }
     }
 }

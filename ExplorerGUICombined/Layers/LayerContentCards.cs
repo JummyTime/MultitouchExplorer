@@ -32,14 +32,15 @@ namespace ExplorerGUICombined.Layers
             parentCanvas = parent_canvas;
         }
 
-        public void drawRegionWindow(ExplorerRegion region, Color highlight_color, Point position)
+        public void drawRegionWindow(ExplorerRegion region, Color highlight_color, Point screen_position)
         {
             ContentCardRegion regionCard = new ContentCardRegion(parentCanvas, highlight_color, region);
             regionCard.OnContentCardOffscreen += card_OnContentCardOffscreen;
             regionCard.TouchDown += card_TouchDown;
             regionCard.TouchUp += card_TouchUp;
             regionCard.TouchMove += card_TouchMove;
-            Canvas.SetLeft(regionCard, 0);
+            Canvas.SetLeft(regionCard, screen_position.X + 10);
+            Canvas.SetTop(regionCard, screen_position.Y + 10);
             parentCanvas.Children.Add(regionCard);
         }
 
@@ -82,14 +83,12 @@ namespace ExplorerGUICombined.Layers
 
             if (!cardsHeldDown.Contains((ContentCardBase)sender))
             {
-
                 cardsHeldDown.Add((ContentCardBase)sender);
 
                 if (cardsHeldDown.Count == 1 && OnContentCardsHeldDown != null)
                 {
                     OnContentCardsHeldDown();
-                }
-
+                }           
 
             }
 

@@ -7,7 +7,8 @@ namespace ExplorerLib.ContentTypes
     {
         private String textContent;
 
-        public ExplorerContentText(XmlNode text_node) : base(text_node)
+        public ExplorerContentText(ExplorerConfiguration configuration, XmlNode text_node)
+            : base(configuration, text_node)
         {
             textContent = text_node.InnerText;
         }

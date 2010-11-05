@@ -8,7 +8,8 @@ namespace ExplorerLib.ContentTypes
     {
         private MediaElement mediaElement;
 
-        public ExplorerContentVideo(XmlNode video_node) : base(video_node)
+        public ExplorerContentVideo(ExplorerConfiguration configuration, XmlNode video_node)
+            : base(configuration, video_node)
         {
             mediaElement = new MediaElement();
             mediaElement.Source = getPathUri();

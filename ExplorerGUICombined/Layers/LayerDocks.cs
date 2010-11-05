@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -9,53 +10,28 @@ namespace ExplorerGUICombined.Layers
     public class LayerDocks
     {
         private Canvas parentCanvas;
-        private GUIConfiguration guiConfig;
 
-        private Dock topDock, bottomDock;
+        private Dock bottomDock;
+        private List<DockIcon> iconsHeldDown = new List<DockIcon>();
 
         public delegate void ContentCardDroppedOnDock(ContentCardBase card);
         public event ContentCardDroppedOnDock OnContentCardDroppedOnDock;
 
-        public LayerDocks(Canvas parent_canvas, GUIConfiguration gui_config)
+        public LayerDocks(Canvas parent_canvas)
         {
             parentCanvas = parent_canvas;
-            guiConfig = gui_config;
 
-            bottomDock = new Dock(guiConfig);
+            bottomDock = new Dock(parentCanvas);
             bottomDock.Loaded += bottomDock_Loaded;
-            bottomDock.SizeChanged += bottomDock_SizeChanged;
             parentCanvas.Children.Add(bottomDock);
 
-            topDock = new Dock(guiConfig);
-            topDock.Loaded += topDock_Loaded;
-            topDock.SizeChanged += topDock_SizeChanged;
-            parentCanvas.Children.Add(topDock);
-            
-
-        }
-
-        void bottomDock_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Canvas.SetLeft(bottomDock, parentCanvas.ActualWidth / 2.0 - bottomDock.ActualWidth / 2.0);
-        }
-
-        void topDock_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Canvas.SetLeft(topDock, parentCanvas.ActualWidth / 2.0 - topDock.ActualWidth / 2.0);
         }
 
         private void bottomDock_Loaded(object sender, RoutedEventArgs e)
         {
-            bottomDock.RotateTransform.Angle = 0;
-            Canvas.SetBottom(bottomDock, -bottomDock.ActualHeight);
-            Canvas.SetLeft(bottomDock, parentCanvas.ActualWidth / 2.0 - bottomDock.ActualWidth / 2.0);
-        }
-
-        private void topDock_Loaded(object sender, RoutedEventArgs e)
-        {
-            topDock.RotateTransform.Angle = 180;
-            Canvas.SetTop(topDock, -topDock.ActualHeight);
-            Canvas.SetLeft(topDock, parentCanvas.ActualWidth / 2.0 - topDock.ActualWidth / 2.0);
+            bottomDock.RotateTransform.Angle = 45;
+            bottomDock.TranslateTransform.X = parentCanvas.ActualWidth / 2.0 - bottomDock.ActualWidth / 2.0;
+            bottomDock.TranslateTransform.Y = parentCanvas.ActualHeight - bottomDock.ActualHeight;
         }
 
         public void checkDraggedOn(ContentCardBase card, TouchContact touch_contact)
@@ -87,15 +63,14 @@ namespace ExplorerGUICombined.Layers
 
         public void showUnusedDocks()
         {
-            if (!topDock.isDockInUse()) topDock.AnimateTranslate(0, topDock.ActualHeight, .8, .2, new TimeSpan(0, 0, 0, 0, 400));
-            if (!bottomDock.isDockInUse()) bottomDock.AnimateTranslate(0, -bottomDock.ActualHeight, .8, .2, new TimeSpan(0, 0, 0, 0, 400));
+            TimeSpan timeToShow = new TimeSpan(0, 0, 0, 0, 400);
+            if (!bottomDock.isDockInUse()) bottomDock.TranslateTransform.Y -= bottomDock.ActualHeight;
         }
 
         public void hideUnusedDocks()
         {
-
-            if(!topDock.isDockInUse()) topDock.AnimateTranslate(0, -topDock.ActualHeight, .8, .2, new TimeSpan(0, 0, 0, 0, 400));
-            if(!bottomDock.isDockInUse()) bottomDock.AnimateTranslate(0, bottomDock.ActualHeight, .8, .2, new TimeSpan(0, 0, 0, 0, 400));
+            TimeSpan timeToShow = new TimeSpan(0, 0, 0, 0, 400);
+            if (!bottomDock.isDockInUse()) bottomDock.TranslateTransform.Y += bottomDock.ActualHeight;
             
         }
 

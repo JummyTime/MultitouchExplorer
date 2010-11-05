@@ -24,9 +24,9 @@ namespace ExplorerGUICombined.Behaviors
             base.OnAttached();
 
             AssociatedObject.TranslateTransformUpdated += AssociatedObject_TranslateTransformUpdated;
-            
-            double widthMinScale = Screen.PrimaryScreen.Bounds.Width / imageWidth;
-            double heightMinScale = Screen.PrimaryScreen.Bounds.Height / imageHeight;
+
+            double widthMinScale = rootScreenCanvas.ActualWidth / imageWidth;
+            double heightMinScale = rootScreenCanvas.ActualHeight / imageHeight;
             double minScaleAmount;
             if (widthMinScale > heightMinScale) minScaleAmount = widthMinScale;
             else minScaleAmount = heightMinScale;

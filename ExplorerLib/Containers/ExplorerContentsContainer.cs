@@ -10,26 +10,26 @@ namespace ExplorerLib.Containers
     {
         private readonly Dictionary<String, ExplorerContentBase> contentList = new Dictionary<String, ExplorerContentBase>();
 
-        public ExplorerContentsContainer(XmlNode contents_node)
+        public ExplorerContentsContainer(ExplorerConfiguration configuration, XmlNode contents_node)
         {
             foreach (XmlNode childNode in contents_node.ChildNodes)
             {
                 ExplorerContentBase newItem;
-                if (childNode.Name == "image")
+                if (childNode.Name == configuration.getImageTag())
                 {
-                    newItem = new ExplorerContentImage(childNode);
+                    newItem = new ExplorerContentImage(configuration, childNode);
                 }
-                else if (childNode.Name == "video")
+                else if (childNode.Name == configuration.getVideoTag())
                 {
-                    newItem = new ExplorerContentVideo(childNode);
+                    newItem = new ExplorerContentVideo(configuration, childNode);
                 }
-                else if (childNode.Name == "text")
+                else if (childNode.Name == configuration.getTextTag())
                 {
-                    newItem = new ExplorerContentText(childNode);
+                    newItem = new ExplorerContentText(configuration, childNode);
                 }
-                else if (childNode.Name == "map")
+                else if (childNode.Name == configuration.getMapTag())
                 {
-                    newItem = new ExplorerContentMap(childNode);
+                    newItem = new ExplorerContentMap(configuration, childNode);
                 }
                 else
                 {

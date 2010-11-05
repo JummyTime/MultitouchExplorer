@@ -7,11 +7,11 @@ namespace ExplorerLib.Containers
     {
         private readonly List<ExplorerPoint> pointsList = new List<ExplorerPoint>();
 
-        public ExplorerPointsContainer(XmlNode regions_node)
+        public ExplorerPointsContainer(ExplorerConfiguration configuration, XmlNode regions_node)
         {
             foreach (XmlNode childNode in regions_node.ChildNodes)
             {
-                if (childNode.Name == "point")
+                if (childNode.Name == configuration.getPointTag())
                 {
                     pointsList.Add(new ExplorerPoint(childNode));
                 }

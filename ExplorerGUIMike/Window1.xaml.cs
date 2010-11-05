@@ -31,7 +31,7 @@ namespace ExplorerGUIMike
             TableManager.RunTable(this, LayoutRoot);
             try
             {
-                Explorer explorer = new Explorer("../../../Sample.xml");
+                Explorer explorer = new Explorer("../../../Config.xml", "../../../Sample.xml");
                 ExplorerContentMap rootMap = explorer.getRootContentMap();
                 Canvas c = new Canvas();
                 DraggableBackgroundMap backgroundMap = new DraggableBackgroundMap(rootMap);

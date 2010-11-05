@@ -1,3 +1,25 @@
-﻿<config>
-  <item key="add_to_dock_icon" value="../../../Images/Base/plus_sign.png" />
-</config>
+﻿<configuration>
+  <item key="map_tag">map</item>
+  <item key="contents_tag">contents</item>
+  <item key="regions_tag">regions</item>
+  <item key="region_tag">region</item>
+  <item key="events_tag">events</item>
+  <item key="event_tag">event</item>
+  <item key="image_tag">image</item>
+  <item key="text_tag">text</item>
+  <item key="video_tag">video</item>
+  <item key="points_tag">points</item>
+  <item key="point_tag">point</item>
+  <item key="event_tag_tag">tag</item>
+  <item key="defaulttextid_attribute">defaulttextid</item>
+  <item key="defaultimageid_attribute">defaultimageid</item>
+  <item key="localid_attribute">localid</item>
+  <item key="point_x_attribute">x</item>
+  <item key="point_y_attribute">y</item>
+  <item key="media_path_attribute">path</item>
+  <item key="content_name_attribute">name</item>
+  <item key="content_shortname_attribute">shortname</item>
+  <item key="event_start_time_attribute">start</item>
+  <item key="event_end_time_attribute">end</item>
+  <item key="event_name_attribute">name</item>
+</configuration>

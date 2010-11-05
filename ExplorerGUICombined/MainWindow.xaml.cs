@@ -37,24 +37,22 @@ namespace ExplorerGUICombined
 
         void rootCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-            Explorer explorer = new Explorer("../../../Sample.xml");
-            GUIConfiguration config = new GUIConfiguration("../../../Config.xml");
+            Explorer explorer = new Explorer("../../../Config.xml", "../../../Sample.xml");
             ExplorerContentMap rootMap = explorer.getRootContentMap();
 
             backgroundMapLayer = new LayerBackgroundMap(rootCanvas, rootMap);
             contentCardsLayer = new LayerContentCards(rootCanvas);
-            dockLayer = new LayerDocks(rootCanvas, config);
 
             //Link some events up between the layers. We can enable and disable features this way
             backgroundMapLayer.OnRegionClick += contentCardsLayer.drawRegionWindow;
             backgroundMapLayer.OnRegionClick += backgroundMapLayer.drawRegionOverlay;
-            contentCardsLayer.OnContentCardTouchUp += dockLayer.checkDraggedOn;
+            //contentCardsLayer.OnContentCardTouchUp += dockLayer.checkDraggedOn;
             contentCardsLayer.OnContentCardOffscreen += backgroundMapLayer.removeRegionOverlay;
             contentCardsLayer.OnContentCardOffscreen += contentCardsLayer.removeContentCard;
-            dockLayer.OnContentCardDroppedOnDock += backgroundMapLayer.removeRegionOverlay;
-            dockLayer.OnContentCardDroppedOnDock += contentCardsLayer.removeContentCard;
-            contentCardsLayer.OnContentCardsHeldDown += dockLayer.showUnusedDocks;
-            contentCardsLayer.OnContentCardsReleased += dockLayer.hideUnusedDocks;
+           // dockLayer.OnContentCardDroppedOnDock += backgroundMapLayer.removeRegionOverlay;
+           // dockLayer.OnContentCardDroppedOnDock += contentCardsLayer.removeContentCard;
+           // contentCardsLayer.OnContentCardsHeldDown += dockLayer.showUnusedDocks;
+           // contentCardsLayer.OnContentCardsReleased += dockLayer.hideUnusedDocks;
         }
     }
 }

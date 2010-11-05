@@ -101,7 +101,7 @@
     <Compile Include="ContentCards\ContentCardImage.cs" />
     <Compile Include="ContentCards\ContentCardRegion.cs" />
     <Compile Include="Dock.cs" />
-    <Compile Include="GUIConfiguration.cs" />
+    <Compile Include="DockIcon.cs" />
     <Compile Include="Layers\LayerDocks.cs" />
     <Compile Include="Layers\LayerBackgroundMap.cs" />
     <Compile Include="Behaviors\BehaviorOffscreen.cs" />

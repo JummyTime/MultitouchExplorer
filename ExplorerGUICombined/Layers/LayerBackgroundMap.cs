@@ -15,29 +15,31 @@ namespace ExplorerGUICombined.Layers
 {
     public class LayerBackgroundMap : DraggableBorder
     {
-        private TouchCanvas parentCanvas;
+        private Canvas background;
+        private Canvas parentCanvas;
         private ExplorerContentMap parentMap;
 
         private Dictionary<ExplorerRegion,Polygon> highlightedRegions = new Dictionary<ExplorerRegion, Polygon>(); 
 
-        public delegate void RegionClick(ExplorerRegion region, Color highlight_color, Point position);
+        public delegate void RegionClick(ExplorerRegion region, Color highlight_color, Point screen_position);
         public event RegionClick OnRegionClick;
 
         public LayerBackgroundMap(Canvas parent_canvas, ExplorerContentMap parent_map)
         {
-            parent_canvas.Children.Add(this);
+            parentCanvas = parent_canvas;
+            parentCanvas.Children.Add(this);
 
             parentMap = parent_map;
             Image mapImage = parentMap.getImage();
 
-            parentCanvas = new TouchCanvas();
-            parentCanvas.Background = new ImageBrush(mapImage.Source);
-            parentCanvas.MinWidth = mapImage.Source.Width;
-            parentCanvas.MaxWidth = mapImage.Source.Width;
-            parentCanvas.MinHeight = mapImage.Source.Height;
-            parentCanvas.MaxHeight = mapImage.Source.Height;
+            background = new Canvas();
+            background.Background = new ImageBrush(mapImage.Source);
+            background.MinWidth = mapImage.Source.Width;
+            background.MaxWidth = mapImage.Source.Width;
+            background.MinHeight = mapImage.Source.Height;
+            background.MaxHeight = mapImage.Source.Height;
 
-            Child = parentCanvas;
+            Child = background;
             IsRSTEnabled = true;
             IsRotateEnabled = false; //Prevent rotation since bounds algo doesnt take that into consideration
             IsScaleEnabled = true;
@@ -45,7 +47,7 @@ namespace ExplorerGUICombined.Layers
             IsStayInboundsEnabled = false; //Prevent the shifting when zoomed in
             IsMoveToTopOnTouchEnabled = false; //Prevent the layer from coming above other layers
 
-            BehaviorSingleClickHelper clickHelper = new BehaviorSingleClickHelper();
+            BehaviorSingleClickHelper clickHelper = new BehaviorSingleClickHelper(parentCanvas);
             clickHelper.OnSingleClick += clickHelper_OnSingleClick;
 
             Attach(clickHelper);
@@ -61,7 +63,10 @@ namespace ExplorerGUICombined.Layers
                 if(!highlightedRegions.ContainsKey(region))
                 {   
                     Color randomColor = RandomColorManager.getRandomColor();
-                    OnRegionClick(region, randomColor, relative_point);
+                    if(OnRegionClick != null)
+                    {
+                        OnRegionClick(region, randomColor, screen_point);
+                    }
                 }
                 
             }
@@ -74,7 +79,7 @@ namespace ExplorerGUICombined.Layers
                 ellipse.Stroke = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
                 Canvas.SetLeft(ellipse, relative_point.X - 5);
                 Canvas.SetTop(ellipse, relative_point.Y - 5);
-                parentCanvas.Children.Add(ellipse);
+                background.Children.Add(ellipse);
 
                 Console.WriteLine("<point x=\"" + relative_point.X + "\" y=\"" + relative_point.Y + "\" />");
 
@@ -87,7 +92,7 @@ namespace ExplorerGUICombined.Layers
             Polygon highlight = getRegionOverlay(region, highlight_color);
 
             highlightedRegions.Add(region, highlight);
-            parentCanvas.Children.Add(highlight);
+            background.Children.Add(highlight);
         }
 
         public void removeRegionOverlay(ExplorerRegion region)

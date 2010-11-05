@@ -8,13 +8,13 @@ namespace ExplorerLib.Containers
     {
         private readonly List<ExplorerEvent> eventList = new List<ExplorerEvent>();
 
-        public ExplorerEventsContainer(XmlNode events_node)
+        public ExplorerEventsContainer(ExplorerConfiguration configuration, XmlNode events_node)
         {
             foreach (XmlNode childNode in events_node.ChildNodes)
             {
-                if (childNode.Name == "event")
+                if (childNode.Name == configuration.getEventTag())
                 {
-                    eventList.Add(new ExplorerEvent(childNode));
+                    eventList.Add(new ExplorerEvent(configuration, childNode));
                 }
             }
         }

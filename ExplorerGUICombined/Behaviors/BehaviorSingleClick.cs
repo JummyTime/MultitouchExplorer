@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interactivity;
+using System.Windows.Media;
 using libSMARTMultiTouch;
 using Application = System.Windows.Application;
 
@@ -19,6 +21,11 @@ namespace ExplorerGUICombined.Behaviors
         public delegate void HandleSingleClickOnMap(Point relative_point, Point screen_point);
 
         public event HandleSingleClickOnMap OnSingleClick;
+        private readonly Canvas rootScreenCanvas;
+        public BehaviorSingleClickHelper(Canvas root_screen_canvas)
+        {
+            rootScreenCanvas = root_screen_canvas;
+        }
 
         protected override void OnAttached()
         {
@@ -47,7 +54,7 @@ namespace ExplorerGUICombined.Behaviors
 
                 
                 Point relativePoint = e.TouchContact.GetPosition(AssociatedObject.FrameworkElement);
-                Point screenPoint = AssociatedObject.FrameworkElement.PointToScreen(relativePoint);
+                Point screenPoint = e.TouchContact.GetPosition(rootScreenCanvas);
                 if((DateTime.Now - startTime).TotalMilliseconds < 500)
                 {
                     if((screenPoint - startScreenPoint).Length < 5)

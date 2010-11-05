@@ -8,7 +8,8 @@ namespace ExplorerLib.ContentTypes
     {
         private BitmapImage bitmapImage;
 
-        public ExplorerContentImage(XmlNode image_node) : base(image_node)
+        public ExplorerContentImage(ExplorerConfiguration configuration, XmlNode image_node)
+            : base(configuration, image_node)
         {
 
             bitmapImage = new BitmapImage(getPathUri());

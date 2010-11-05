@@ -10,20 +10,20 @@ namespace ExplorerLib.ContentTypes
         private String name;
         private String shortName;
 
-        public ExplorerContentBase(XmlNode content_node)
+        public ExplorerContentBase(ExplorerConfiguration configuration, XmlNode content_node)
         {
             foreach (XmlAttribute attribute in content_node.Attributes)
             {
-                
-                if (attribute.Name == "localid")
+
+                if (attribute.Name == configuration.getLocalIdAttr())
                 {
                     localID = attribute.Value;
                 }
-                else if (attribute.Name == "name")
+                else if (attribute.Name == configuration.getContentNameAttr())
                 {
                     name = attribute.Value;
                 }
-                else if (attribute.Name == "shortname")
+                else if (attribute.Name == configuration.getContentShortNameAttr())
                 {
                     shortName = attribute.Value;
                 }

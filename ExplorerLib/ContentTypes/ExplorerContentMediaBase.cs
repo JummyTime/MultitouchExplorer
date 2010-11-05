@@ -9,11 +9,12 @@ namespace ExplorerLib.ContentTypes
     {
         private String mediaPath;
 
-        public ExplorerContentMediaBase(XmlNode content_node) : base(content_node)
+        public ExplorerContentMediaBase(ExplorerConfiguration configuration, XmlNode content_node)
+            : base(configuration, content_node)
         {
             foreach (XmlAttribute attribute in content_node.Attributes)
             {
-                if (attribute.Name == "path")
+                if (attribute.Name == configuration.getMediaPathAttr())
                 {
                     mediaPath = attribute.Value;
                 }

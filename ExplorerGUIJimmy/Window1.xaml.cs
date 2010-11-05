@@ -29,7 +29,7 @@ namespace MultitouchExplorer
         private TouchCanvas PrimaryCanvas = new TouchCanvas();
         private RSTBehavior rnt = new RSTBehavior();
         private ExplorerGUIJimmy.ExplorerClickBehavior ecb = new ExplorerGUIJimmy.ExplorerClickBehavior();
-        private Explorer explorer = new Explorer("../../../Sample.xml");
+        private Explorer explorer = new Explorer("../../../Config.xml", "../../../Sample.xml");
 
         public Window1()
         {
