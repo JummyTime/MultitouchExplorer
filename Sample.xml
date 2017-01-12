@@ -1,0 +1,114 @@
+﻿  <map path="../../../Images/Content/campusmap.jpg" name="TNTECH Campus">
+    <events>
+      <event name="TTU Campus Closes for Spring Break" start="05/14/1989 23:00GMT" end="05/20/1989 23:00GMT">
+        <tag>campus</tag>
+        <tag>vacation</tag>
+        <tag>closure</tag>
+      </event>
+      <event name="Great Move-in Day" start="05/14/1989 05:00GMT" end="05/14/1989 23:00GMT">
+        <tag>freshman</tag>
+        <tag>dorms</tag>
+        <tag>freefood</tag>
+      </event>
+    </events>
+    <regions>
+      <region name="New Hall" defaulttextid="1">
+        <points>
+          <point x="1720.23411371237" y="804.983277591973" />
+          <point x="1673.57859531773" y="794.448160535117" />
+          <point x="1678.09364548495" y="767.357859531773" />
+          <point x="1684.11371237458" y="740.267558528428" />
+          <point x="1664.54849498328" y="722.207357859532" />
+          <point x="1638.96321070234" y="719.197324414716" />
+          <point x="1590.80267558528" y="710.167224080267" />
+          <point x="1587.79264214047" y="707.157190635451" />
+          <point x="1586.28762541806" y="680.066889632107" />
+          <point x="1595.31772575251" y="658.996655518395" />
+          <point x="1602.84280936455" y="657.491638795987" />
+          <point x="1693.14381270903" y="674.046822742475" />
+          <point x="1693.14381270903" y="671.036789297659" />
+          <point x="1717.22408026756" y="665.016722408027" />
+          <point x="1736.78929765886" y="678.561872909699" />
+          <point x="1736.78929765886" y="683.076923076923" />
+          <point x="1827.09030100334" y="699.632107023411" />
+          <point x="1828.59531772575" y="704.147157190635" />
+          <point x="1822.57525083612" y="722.207357859532" />
+          <point x="1818.0602006689" y="746.28762541806" />
+          <point x="1804.51505016722" y="749.297658862876" />
+          <point x="1760.86956521739" y="741.772575250836" />
+          <point x="1754.84949832776" y="737.257525083612" />
+          <point x="1750.33444816053" y="737.257525083612" />
+          <point x="1733.77926421405" y="774.882943143813" />
+        </points>
+        <contents>
+          <text localid="1" name="About New Hall" shortname="About NH">This is the old freshman building </text>
+        </contents>
+      </region>
+      <region name="Mystery Building" defaulttextid="1">
+        <points>
+          <point x="686.28762541806" y="480.10033444816" />
+          <point x="704.347826086957" y="471.070234113712" />
+          <point x="702.842809364548" y="463.545150501672" />
+          <point x="698.327759197324" y="459.030100334448" />
+          <point x="728.428093645485" y="448.494983277592" />
+          <point x="728.428093645485" y="439.464882943144" />
+          <point x="671.23745819398" y="412.374581939799" />
+          <point x="617.056856187291" y="437.959866220736" />
+          <point x="617.056856187291" y="446.989966555184" />
+          <point x="642.642140468227" y="460.535117056856" />
+          <point x="621.571906354515" y="472.57525083612" />
+          <point x="621.571906354515" y="480.10033444816" />
+          <point x="638.127090301003" y="487.625418060201" />
+          <point x="672.742474916388" y="474.080267558528" />
+        </points>
+        <contents>
+          <text localid="1" name ="About Mystery Building" shortname="About MB">Nobody knows what this building is for</text>
+        </contents>
+      </region>
+      <region name="Brown Hall" defaultimageid="1" defaulttextid="2">
+        <points>
+          <point x="971.763827897146" y="462.385723721651" />
+          <point x="968.516500194797" y="444.673027163386" />
+          <point x="985.048350315845" y="427.550753823729" />
+          <point x="1004.82752813924" y="426.960330605121" />
+          <point x="1080.99212333978" y="457.957549582085" />
+          <point x="1081.58254655839" y="470.946860391479" />
+          <point x="1069.77408218621" y="477.736727405481" />
+          <point x="1070.36450540482" y="482.164901545047" />
+          <point x="1068.00281253039" y="485.412229247396" />
+          <point x="1066.23154287456" y="487.773922121831" />
+          <point x="1058.85125264195" y="491.316461433484" />
+          <point x="1051.17575080004" y="487.183498903222" />
+          <point x="1044.38588378603" y="492.792519480006" />
+        </points>
+        <contents>
+          <image localid="1" path="../../../Images/Content/BrownHall/brownhallfront.jpg" name="Front of Brown Hall" shortname="BH Front"/>
+          <text localid="2" name="About Brown Hall" shortname="About BH">ECE and ME Building Headquarters</text>
+          <image localid="3" path="../../../Images/Content/BrownHall/brownhallfar.jpg" name="Far View of Brown Hall" shortname="BH Far"/>
+        </contents>
+      </region>
+      <region name="Bruner Hall" defaultimageid="1" defaulttextid="2">
+        <points>
+          <point x="1141.89773635375" y="442.742441784844" />
+          <point x="1147.45217050168" y="444.878762610971" />
+          <point x="1168.38811459773" y="435.051686810784" />
+          <point x="1167.53358626728" y="420.09744102789" />
+          <point x="1169.66990709341" y="418.388384366988" />
+          <point x="1167.10632210206" y="417.961120201763" />
+          <point x="1167.96085043251" y="413.688478549507" />
+          <point x="1093.18962151804" y="383.77998698372" />
+          <point x="1079.0899040656" y="386.343571975073" />
+          <point x="1060.7175449609" y="402.579610253643" />
+          <point x="1062.4266016218" y="419.242912697439" />
+        </points>
+        <contents>
+          <image localid="1" path="../../../Images/Content/BrunerHall/brunerhallfront.jpg" name="Front of Bruner Hall" shortname="BR Front"/>
+          <text localid="2" name="About Brown Hall" shortname="About BR">Computer Scientists, Math Majors, and Physicists Live Here</text>
+        </contents>
+        <events></events>
+      </region>
+    </regions>
+    <contents>
+    </contents>
+    
+  </map>
